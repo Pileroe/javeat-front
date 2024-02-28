@@ -43,7 +43,7 @@ export default function AllRestaurants() {
         const filteredRestaurants = restaurants.filter(restaurant => {
             const selectedFoodTypes = filters.foodTypes;
             const maxDistance = parseInt(filters.maxDistance);
-            const isFoodTypeMatch = selectedFoodTypes.length === 0 || selectedFoodTypes.some(type => restaurant.food_types.includes(type));
+            const isFoodTypeMatch = selectedFoodTypes.length === 0 || selectedFoodTypes.some(type => restaurant.foodTypes.includes(type));
             const isWithinDistance = !maxDistance || restaurant.distance <= maxDistance;
             return isFoodTypeMatch && isWithinDistance;
         });
