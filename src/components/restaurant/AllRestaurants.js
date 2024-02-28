@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RestaurantCard from './RestaurantCard';
+import { useAtom } from 'jotai';
+import axios from 'axios';
+import { currentUser } from '../../App';
+
 
 const mockRestaurants = [
     {
@@ -20,9 +24,14 @@ const mockRestaurants = [
     },
 ];
 
-export default function AllRestaurants({ restaurants }) {
+export default function AllRestaurants({ restaurants }) 
+{
     const [filterFoodType, setFilterFoodType] = useState('');
     const [filterDistance, setFilterDistance] = useState('');
+    const [user,setUser] = useAtom(currentUser);
+
+    
+   
 
     const filteredRestaurants = restaurants && restaurants.length > 0
         ? restaurants.filter(filterByFoodType).filter(filterByDistance)

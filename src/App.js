@@ -8,8 +8,21 @@ import { atom } from 'jotai';
 import Register from './components/login/Register';
 
 import RestaurantDetail from './components/restaurant/RestaurantDetail';
+import Homepage from './components/homepage/Homepage';
+import PageOrder from './components/Pagamento/PageOrder';
+import CheckOut from './components/Pagamento/CheckOut';
 
-export const currentUser = atom();
+export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? null)
+
+
+export const currentUser = atom(
+  (get) => get(currentU),
+  (get, set, newStr) => {
+    set(currentU, newStr)
+    localStorage.setItem('user', JSON.stringify(newStr))
+  },
+)
+
 
 function App() {
     return (
@@ -17,10 +30,14 @@ function App() {
             <BrowserRouter>
                 <Navbar />
                 <Routes>
+                    <Route index element={<Homepage/>}  />
                     <Route path="/user/register" element={<Register />} />
-        <Route path="/user/login" element={<Login />} />
+                    <Route path="/user/login" element={<Login />} />
                     <Route path="/all-restaurants" element={<AllRestaurants />} />
                     <Route path="/restaurants/:id" element={<RestaurantDetail />} />
+                    <Route path='/pageorder'element={<PageOrder/>} />
+                    <Route path='/checkout'element={<CheckOut/>} />
+
                 </Routes>
             </BrowserRouter>
         </>
