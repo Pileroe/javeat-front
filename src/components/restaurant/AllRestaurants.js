@@ -1,78 +1,91 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import RestaurantCard from './RestaurantCard';
 
-const mockRestaurants = [
-    {
-        id: 1,
-        name: "Mock Restaurant 1",
-        img_url: "https://example.com/image1.jpg",
-        is_open: true,
-        food_types: ["Italian", "Mexican"],
-        distance: 5
-    },
-    {
-        id: 2,
-        name: "Mock Restaurant 2",
-        img_url: "https://example.com/image2.jpg",
-        is_open: false,
-        food_types: ["Japanese", "Chinese"],
-        distance: 8
-    },
-];
-
-export default function AllRestaurants({ restaurants }) {
-    const [filterFoodType, setFilterFoodType] = useState('');
-    const [filterDistance, setFilterDistance] = useState('');
-
-    const filteredRestaurants = restaurants && restaurants.length > 0
-        ? restaurants.filter(filterByFoodType).filter(filterByDistance)
-        : [];
-
-    const filterByFoodType = (restaurant) => {
-        if (!filterFoodType) return true;
-        return restaurant.foodTypes.includes(filterFoodType);
+export default function AllRestaurants() {
+    const [restaurants, setRestaurants] = useState([]);
+    const [filters, setFilters] = useState({
+        foodType: '',
+        maxDistance: ''
+    });
+    const filterRefs = {
+        foodType: useRef(null),
+        maxDistance: useRef(null)
     };
 
-    const filterByDistance = (restaurant) => {
-        if (!filterDistance) return true;
-        return restaurant.distance <= parseInt(filterDistance);
+    useEffect(() => {
+        axios.get('/allrestaurants')
+            .then(response => {
+                setRestaurants(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching restaurants:', error);
+            });
+    }, []);
+
+    const handleFilterChange = (e) => {
+        const { name, value } = e.target;
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            [name]: value
+        }));
+    };
+
+    const handleFilter = () => {
+        setRestaurants(prevRestaurants => [...prevRestaurants]);
+    };
+
+    const isShowable = (restaurant) => {
+        const { foodType, maxDistance } = filters;
+
+        if (!foodType && !maxDistance) {
+            return true;
+        }
+
+        if (foodType && !restaurant.food_types.includes(foodType)) {
+            return false;
+        }
+
+        if (maxDistance && restaurant.distance > parseInt(maxDistance)) {
+            return false;
+        }
+
+        return true;
     };
 
     return (
-        <div>
-            <div>
-                <input
-                    type="text"
-                    placeholder="Food Type"
-                    value={filterFoodType}
-                    onChange={(e) => setFilterFoodType(e.target.value)}
-                />
-                <input
-                    type="number"
-                    placeholder="Distance (km)"
-                    value={filterDistance}
-                    onChange={(e) => setFilterDistance(e.target.value)}
-                />
-            </div>
-            <div className="container">
-                <div className="row">
-                    {mockRestaurants.map((restaurant) => (
-                        <div key={restaurant.id} className="col-md-4 mb-4">
-                            <RestaurantCard
-                                restaurant={{
-                                    ...restaurant,
-                                    food_types: restaurant.food_types ? restaurant.food_types : []
-                                }}
-                            />
-                        </div>
-                    ))}
-                </div>
-            </div>
+        <div className="container">
             <div className="row">
-                {filteredRestaurants.map((restaurant, index) => (
-                    <RestaurantCard key={index} restaurant={restaurant} />
-                ))}
+                <div className="col-md-3">
+                    
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">Filter</h5>
+                            <div className="mb-3">
+                                <label htmlFor="foodType" className="form-label">Food Type</label>
+                                <input type="text" className="form-control" id="foodType" name="foodType" ref={filterRefs.foodType} onChange={handleFilterChange} />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="maxDistance" className="form-label">Max Distance (km)</label>
+                                <input type="number" className="form-control" id="maxDistance" name="maxDistance" ref={filterRefs.maxDistance} onChange={handleFilterChange} />
+                            </div>
+                            <button className="btn btn-primary" onClick={handleFilter}>Apply Filter</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-9">
+                    
+                    <div className="row">
+                        {restaurants.filter(isShowable).map(restaurant => (
+                            <div className="col-md-4 mb-4" key={restaurant.id}>
+                                <RestaurantCard restaurant={restaurant} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
+
+
