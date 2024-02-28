@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DishDetail from '../dish/DishDetail';
+import Cart from '../cart/Cart';
 
 export default function RestaurantDetail({ restaurant }) {
+    const [cartItems, setCartItems] = useState([]);
+
+    const addToCart = (dish) => {
+        setCartItems([...cartItems, dish]);
+    };
+
+    if (!restaurant) {
+        return <p>Restaurant not found</p>;
+    }
+
     return (
         <div>
             <h2>{restaurant.name}</h2>
@@ -15,11 +27,16 @@ export default function RestaurantDetail({ restaurant }) {
             <h3>Menu</h3>
             {restaurant.menu && restaurant.menu.dishes && restaurant.menu.dishes.length > 0 ? (
                 restaurant.menu.dishes.map((dish) => (
-                    <DishDetail key={dish.id} dish={dish} />
+                    <div key={dish.id}>
+                        <DishDetail dish={dish} />
+                        <button onClick={() => addToCart(dish)}>Add to Cart</button>
+                    </div>
                 ))
             ) : (
                 <p>No dishes available</p>
             )}
+
+            <Cart items={cartItems} />
         </div>
     );
 }
