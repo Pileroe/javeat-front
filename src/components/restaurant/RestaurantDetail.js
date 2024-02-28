@@ -47,6 +47,11 @@ export default function RestaurantDetail() {
         return totalPrice;
     };
 
+    const proceedToCheckout = () => {
+        // Implementa qui la logica per procedere con l'ordine
+        console.log("Procedi con l'ordine!");
+    };
+
     if (!restaurant) {
         return <p>Loading...</p>;
     }
@@ -94,6 +99,9 @@ export default function RestaurantDetail() {
                             ))}
                             <hr />
                             <p>Total Price: ${getTotalPrice()}</p>
+                            {cartItems.length > 0 && (
+                                <button className="btn btn-success btn-block" onClick={proceedToCheckout}>Proceed to Checkout</button>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -101,5 +109,6 @@ export default function RestaurantDetail() {
         </div>
     );
 }
+
 
 
