@@ -69,10 +69,10 @@ export default function PageOrder (){
                     <form>
                         <h2>Seleziona l'orario di consegna</h2>
                         <br/>
-                        <select className="form-select" id="orario" value={generaOrari} onChange={handleOrarioChange}>
+                        {/* <select className="form-select" id="orario" value={generaOrari} onChange={handleOrarioChange}>
                             <option selected>Orari di consegna</option>
                             {orariOptions}
-                        </select>
+                        </select> */}
                         <div className="mb-3 mt-3">
                             <label htmlFor="exampleInputPassword1" className="form-label"><strong>Notes</strong></label>
                             <input type="notes" className="form-control" id="exampleInputPassword1" value={notes} onChange={handelArrival} placeholder="Notes"/>
