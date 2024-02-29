@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useAtom } from "jotai";
+import { currentOrder } from "../../App";
 
 
 export default function PageOrder (){
@@ -7,59 +9,59 @@ export default function PageOrder (){
     
     const [expected_arrival, setExpected_arrival] = useState(''); // Stato per l'orario di consegna
     const [notes, setNotes] = useState(''); // Stato per le note
+    const [order,setOrder] = useAtom(currentOrder);
+    
     
 
-    
 
-
-    useEffect(() => 
+    function generateTimeSlots(closingTime) 
     {
-
-        const arrival_time = new Date();// prendo orario corrente
-        const orario_formatt = (String(arrival_time.getHours()).padStart(2,'0')) + ":"+(String(arrival_time.getMinutes()).padStart(2,'0'));// formatto hh:mm
-    
-
-        setExpected_arrival(orario_formatt);//imposto l'orario corrente in orario formattato
-    
-    }, 
-    []);
-    
-    const generaOrari= ()=>
-    {
-        let orari=[];
-
-        for(let hour=0, min=0; hour<24, min<60; hour++, min+=15)
+        const slots = [];
+        const now = new Date();
+        const [closingHour, closingMinute] = closingTime.split(':').map(Number);
+        const closingDate = new Date(now);
+        closingDate.setHours(closingHour, closingMinute, 0, 0);
+      
+        let slot = new Date(now);
+        // Arrotonda al quarto d'ora successivo
+        slot.setMinutes(Math.ceil(slot.getMinutes() / 15) * 15, 0, 0);
+      
+        while (slot < closingDate) 
         {
-            const ora_formatt= (hour < 10 ? '0' : '')(hour);
-            const min_formatt= (min < 10 ? '0' : '')(min);
-
-            orari.push(ora_formatt+":"+min_formatt);
+          slots.push(slot.toTimeString().substring(0, 5));
+          slot = new Date(slot.getTime() + 15 * 60 * 1000); // Aggiunge 15 minuti
         }
-        return orari;  
-        
+      
+        return slots;
     }
 
 
     let navigate = useNavigate();
     
 
-    const handelArrival = (event) =>
-    {
-        setExpected_arrival(event.target.value);
-    };
-
     const handleNotesChange = (event) =>
     {
-        setNotes(event.target.value);
+        if (event.target && event.target.value !== undefined)
+        { 
+            setNotes(event.target.value);
+            setOrder((currentOrder) => ({...currentOrder,notes: event.target.value,}));
+        }
+        console.log(event.target.value.type);
     };  
 
     const handleSubmit = (event) =>
     {
         event.preventDefault();
-        navigate('/checkout');
+        navigate('/checkOut');
     }
 
-   
+    const handleOrarioChange = (event) =>
+    {
+        setExpected_arrival(event.target.value);
+        setOrder(...order.expected_arrival=event.target.value);
+    }
+
+   console.log(order);
     return(
         <>
         
@@ -69,15 +71,17 @@ export default function PageOrder (){
                     <form>
                         <h2>Seleziona l'orario di consegna</h2>
                         <br/>
-                        {/* <select className="form-select" id="orario" value={generaOrari} onChange={handleOrarioChange}>
-                            <option selected>Orari di consegna</option>
-                            {orariOptions}
-                        </select> */}
+                        <select className="form-select" id="orario" value={expected_arrival} onChange={handleOrarioChange}>
+                            <option value="" disabled>Orari di consegna</option>
+                                    {generateTimeSlots('18:00').map((time, index) => (
+                            <option key={index} value={time}>{time}</option>
+                            ))}
+                        </select>
                         <div className="mb-3 mt-3">
                             <label htmlFor="exampleInputPassword1" className="form-label"><strong>Notes</strong></label>
-                            <input type="notes" className="form-control" id="exampleInputPassword1" value={notes} onChange={handelArrival} placeholder="Notes"/>
+                            <input type="text" className="form-control" id="exampleInputPassword1" value={notes} onChange={handleNotesChange} placeholder="Notes"/>
                         </div>
-                        <input type="button" onSubmit={handleSubmit} className="btn" style={{ backgroundColor: "#ff6600", color: "#ffffff" }} value={"Submit"} />
+                        <input type="submit" onClick={handleSubmit} className="btn" style={{ backgroundColor: "#ff6600", color: "#ffffff" }} value={"Submit"} />
                     </form>
                 </div>
             
