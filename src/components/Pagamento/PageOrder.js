@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 
@@ -7,6 +7,38 @@ export default function PageOrder (){
     
     const [expected_arrival, setExpected_arrival] = useState(''); // Stato per l'orario di consegna
     const [notes, setNotes] = useState(''); // Stato per le note
+    
+
+    
+
+
+    useEffect(() => 
+    {
+
+        const arrival_time = new Date();// prendo orario corrente
+        const orario_formatt = (String(arrival_time.getHours()).padStart(2,'0')) + ":"+(String(arrival_time.getMinutes()).padStart(2,'0'));// formatto hh:mm
+    
+
+        setExpected_arrival(orario_formatt);//imposto l'orario corrente in orario formattato
+    
+    }, 
+    []);
+    
+    const generaOrari= ()=>
+    {
+        let orari=[];
+
+        for(let hour=0, min=0; hour<24, min<60; hour++, min+=15)
+        {
+            const ora_formatt= (hour < 10 ? '0' : '')(hour);
+            const min_formatt= (min < 10 ? '0' : '')(min);
+
+            orari.push(ora_formatt+":"+min_formatt);
+        }
+        return orari;  
+        
+    }
+
 
     let navigate = useNavigate();
     
@@ -27,6 +59,7 @@ export default function PageOrder (){
         navigate('/checkout');
     }
 
+   
     return(
         <>
         
@@ -36,11 +69,9 @@ export default function PageOrder (){
                     <form>
                         <h2>Seleziona l'orario di consegna</h2>
                         <br/>
-                        <select className="form-select" aria-label="Default select example">
+                        <select className="form-select" id="orario" value={generaOrari} onChange={handleOrarioChange}>
                             <option selected>Orari di consegna</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            {orariOptions}
                         </select>
                         <div className="mb-3 mt-3">
                             <label htmlFor="exampleInputPassword1" className="form-label"><strong>Notes</strong></label>
