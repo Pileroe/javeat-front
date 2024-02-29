@@ -52,7 +52,7 @@ export default function RestaurantDetail() {
     };
 
     const proceedToCheckout = () => {
-        setOrder(cartItems);
+        setOrder({...order, dishes : cartItems});
         navigate("/pageOrder");
     };
 
