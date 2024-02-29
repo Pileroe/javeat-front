@@ -27,6 +27,7 @@ const Login = () =>
             if(resp.data)
             {
                 setUser(resp.data);
+                navigate("/allrestaurants");
                 
             }
             else

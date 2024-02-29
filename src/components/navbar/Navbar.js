@@ -15,7 +15,7 @@ const Navbar = () => {
                 <div className="navbar-nav">
                     <Link className="nav-link btn  text-black mx-auto btn-lg bottoneNav"  to="user/login">LOGIN</Link>
                     <Link className="nav-link btn  text-black mx-auto btn-lg bottoneNav" to="user/register" >REGISTRATI</Link>
-                    <Link className="nav-link btn btn-warning text-white mx-auto btn-lg" to="/all-restaurants">ALL RESTAURANTS</Link>
+                    <Link className="nav-link btn btn-warning text-white mx-auto btn-lg" to="/allrestaurants">ALL RESTAURANTS</Link>
                 </div>
             </nav>
         </div>

@@ -33,7 +33,7 @@ function App() {
                     <Route index element={<Homepage/>}  />
                     <Route path="/user/register" element={<Register />} />
                     <Route path="/user/login" element={<Login />} />
-                    <Route path="/all-restaurants" element={<AllRestaurants />} />
+                    <Route path="/allrestaurants" element={<AllRestaurants />} />
                     <Route path="/restaurants/:id" element={<RestaurantDetail />} />
                     <Route path='/pageorder'element={<PageOrder/>} />
                     <Route path='/checkout'element={<CheckOut/>} />
