@@ -1,17 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import RestaurantCard from './RestaurantCard';
+import { useAtom } from "jotai";
+import { currentUser } from "../../App";
 
 
 export default function AllRestaurants() {
+    const [user, setUser] = useAtom(currentUser);
     const [restaurants, setRestaurants] = useState([]);
     const [filters, setFilters] = useState({
         foodTypes: [],
-        maxDistance: ''
+        distance: 1000,
+        positionX: user.positionX,
+        positionY: user.positionY,
     });
 
     const filterRefs = {
-        maxDistance: useRef(null)
+        distance: useRef(null)
     };
 
     useEffect(() => {
@@ -24,13 +29,32 @@ export default function AllRestaurants() {
             });
     }, []);
 
-    const handleFilterChange = (e) => {
-        const { name, value } = e.target;
-        if (name === "foodType") {
-            const updatedFoodTypes = filters.foodTypes.includes(value) ? filters.foodTypes.filter(type => type !== value) : [...filters.foodTypes, value];
+    function handleFilterChange(event) {
+        const { name, value, checked } = event.target;
+
+        if (name === 'foodTypes') {
+            setFilters(prevFilters => {
+                // Crea una copia dell'array corrente dei foodTypes
+                const updatedFoodTypes = [...prevFilters.foodTypes];
+                if (checked) {
+                    // Se il checkbox è stato selezionato, aggiungi il tipo di cibo
+                    updatedFoodTypes.push(value);
+                } else {
+                    // Se il checkbox è stato deselezionato, rimuovi il tipo di cibo
+                    const index = updatedFoodTypes.indexOf(value);
+                    if (index > -1) {
+                        updatedFoodTypes.splice(index, 1);
+                    }
+                }
+                return {
+                    ...prevFilters,
+                    foodTypes: updatedFoodTypes
+                };
+            });
+        } else if (name === 'distance') {
             setFilters(prevFilters => ({
                 ...prevFilters,
-                foodTypes: updatedFoodTypes
+                [name]: parseInt(value, 10)
             }));
         } else {
             setFilters(prevFilters => ({
@@ -38,23 +62,25 @@ export default function AllRestaurants() {
                 [name]: value
             }));
         }
-    };
+    }
 
     const handleFilter = () => {
-        const filteredRestaurants = restaurants.filter(restaurant => {
-            const selectedFoodTypes = filters.foodTypes;
-            const maxDistance = parseInt(filters.maxDistance);
-            const isFoodTypeMatch = selectedFoodTypes.length === 0 || selectedFoodTypes.some(type => restaurant.foodTypes.includes(type));
-            const isWithinDistance = !maxDistance || restaurant.distance <= maxDistance;
-            return isFoodTypeMatch && isWithinDistance;
-        });
-        setRestaurants(filteredRestaurants);
-    };
+        console.log(filters);
+        axios.post('/restaurants', filters)
+            .then(response => {
+                setRestaurants(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching restaurants:', error);
+            });
+    }
 
     const resetFilter = () => {
         setFilters({
             foodTypes: [],
-            maxDistance: ''
+            distance: 1000,
+            positionX: user.positionX,
+            positionY: user.positionY,
         });
         axios.get('/allrestaurants')
             .then(response => {
@@ -76,8 +102,9 @@ export default function AllRestaurants() {
                                 <label className="form-label">Food Types</label>
                                 <div>
                                     {['pizza', 'Hamburger', 'Sushi', 'Barbecue', 'Vegetarian'].map((type, index) => (
+
                                         <div key={index} className="form-check">
-                                            <input className="form-check-input" type="checkbox" id={type} name="foodType" value={type} checked={filters.foodTypes.includes(type)} onChange={handleFilterChange} />
+                                            <input className="form-check-input" type="checkbox" id={type} name="foodTypes" value={type} checked={filters.foodTypes.includes(type)} onChange={handleFilterChange} />
                                             <label className="form-check-label" htmlFor={type}>
                                                 {type}
                                             </label>
@@ -86,8 +113,8 @@ export default function AllRestaurants() {
                                 </div>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="maxDistance" className="form-label">Max Distance (km)</label>
-                                <input type="number" className="form-control" id="maxDistance" name="maxDistance" ref={filterRefs.maxDistance} onChange={handleFilterChange} />
+                                <label htmlFor="distance" className="form-label">Max Distance (km)</label>
+                                <input type="number" className="form-control" id="distance" name="distance" ref={filterRefs.distance} onChange={handleFilterChange} />
                             </div>
                             <button className="btn btn-primary me-2" onClick={handleFilter}>Apply Filter</button>
                             <button className="btn btn-secondary" onClick={resetFilter}>Reset Filter</button>
