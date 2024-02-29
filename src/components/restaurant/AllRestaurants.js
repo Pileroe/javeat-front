@@ -102,7 +102,7 @@ export default function AllRestaurants() {
                             <div className="mb-3">
                                 <label className="form-label">Food Types</label>
                                 <div>
-                                    {['pizza', 'Hamburger', 'Sushi', 'Barbecue', 'Vegetarian'].map((type, index) => (
+                                    {['pizza', 'hamburger', 'sushi', 'barbecue', 'vegetarian'].map((type, index) => (
 
                                         <div key={index} className="form-check">
                                             <input className="form-check-input" type="checkbox" id={type} name="foodTypes" value={type} checked={filters.foodTypes.includes(type)} onChange={handleFilterChange} />
