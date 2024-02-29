@@ -49,8 +49,6 @@ function App() {
                     <Route path="/allrestaurants" element={<AllRestaurants />} />
                     <Route path="/restaurants/:id" element={<RestaurantDetail />} />
                     <Route path='/pageOrder'element={<PageOrder/>} />
-                    <Route path='/checkOut'element={<CheckOut/>} />
-
                 </Routes>
             </BrowserRouter>
         </>

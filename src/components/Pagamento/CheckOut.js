@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Atom, useAtom } from "jotai";
 import { currentOrder } from "../../App";
 
-export default function CheckOut (){
+export default function CheckOut ({ invertFliker }){
 
   
     const [pay_method,setPayMethod] = useState(0);
@@ -19,6 +19,7 @@ export default function CheckOut (){
     const handleSubmit =  (event) => 
     {
         event.preventDefault();
+        invertFliker('PageOrder');
         try 
         {
           // Invia i dati del checkout all'API
