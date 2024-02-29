@@ -11,6 +11,8 @@ import RestaurantDetail from './components/restaurant/RestaurantDetail';
 import Homepage from './components/homepage/Homepage';
 import PageOrder from './components/Pagamento/PageOrder';
 import CheckOut from './components/Pagamento/CheckOut';
+import ConfermaOrder from './components/Pagamento/ConfermaOrder';
+
 
 export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? null)
 
@@ -30,9 +32,11 @@ export const currentOrder = atom(
         expected_arrival: "",
         paymentMethod: "",
         notes: "",
-        dishes: {}
-      }
+        dishes: new Map()
+    }
 )
+
+export const currentMenu = atom([])
 
 
 
@@ -48,8 +52,9 @@ function App() {
                     <Route path="/user/login" element={<Login />} />
                     <Route path="/allrestaurants" element={<AllRestaurants />} />
                     <Route path="/restaurants/:id" element={<RestaurantDetail />} />
-                    <Route path='/pageOrder'element={<PageOrder/>} />
-                    <Route path='/checkOut'element={<CheckOut/>} />
+                    <Route path='/pageorder'element={<PageOrder/>} />
+                    <Route path='/checkout'element={<CheckOut/>} />
+                    <Route path='/orderfinal' element={<ConfermaOrder/>}/>
 
                 </Routes>
             </BrowserRouter>

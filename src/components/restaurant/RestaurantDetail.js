@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import DishDetail from '../dish/DishDetail';
 import { useAtom } from 'jotai';
-import { currentOrder } from '../../App'; 
+import { currentOrder } from '../../App';
+import { currentMenu } from '../../App'; 
 
 export default function RestaurantDetail() {
     const { id } = useParams();
@@ -11,11 +12,13 @@ export default function RestaurantDetail() {
     const [restaurant, setRestaurant] = useState(null);
     const [cartItems, setCartItems] = useState(new Map());
     const [order, setOrder] = useAtom(currentOrder);
+    const [menu, setMenu] = useAtom(currentMenu);
 
     useEffect(() => {
         axios.get(`/restaurants/${id}`)
             .then(response => {
                 setRestaurant(response.data);
+                setMenu(response.data.menu);
             })
             .catch(error => {
                 console.error('Error fetching restaurant details:', error);
@@ -53,12 +56,14 @@ export default function RestaurantDetail() {
 
     const proceedToCheckout = () => {
         setOrder({...order, dishes : cartItems});
+        
         navigate("/pageOrder");
     };
 
     if (!restaurant) {
         return <p>Loading...</p>;
     }
+
 
     return (
         <div className="container mt-5">

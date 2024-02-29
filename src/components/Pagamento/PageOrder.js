@@ -62,7 +62,7 @@ export default function PageOrder (){
         setOrder({...order,expected_arrival:event.target.value});
     }
 
-   console.log(order);
+   
     return(
         <>
         

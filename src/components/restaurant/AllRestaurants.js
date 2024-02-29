@@ -4,8 +4,10 @@ import RestaurantCard from './RestaurantCard';
 
 
 
+
 export default function AllRestaurants() {
     const [restaurants, setRestaurants] = useState([]);
+    const [originalRestaurants, setOriginalRestaurants] = useState([]); //Per memorizzare i dati originali
     const [filters, setFilters] = useState({
         foodTypes: [],
         maxDistance: ''
@@ -18,6 +20,7 @@ export default function AllRestaurants() {
     useEffect(() => {
         axios.get('/allrestaurants')
             .then(response => {
+                setOriginalRestaurants(response.data);
                 setRestaurants(response.data);
             })
             .catch(error => {
@@ -27,7 +30,8 @@ export default function AllRestaurants() {
 
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
-        if (name === "foodType") {
+        if (name === "foodType") 
+        {
             const updatedFoodTypes = filters.foodTypes.includes(value) ? filters.foodTypes.filter(type => type !== value) : [...filters.foodTypes, value];
             setFilters(prevFilters => ({
                 ...prevFilters,
@@ -42,10 +46,10 @@ export default function AllRestaurants() {
     };
 
     const handleFilter = () => {
-        const filteredRestaurants = restaurants.filter(restaurant => {
-            const selectedFoodTypes = filters.foodTypes;
+        const filteredRestaurants = originalRestaurants.filter(restaurant => {
+            const selectedFoodTypes = filters.foodTypes.map(type => type.toLowerCase());
             const maxDistance = parseInt(filters.maxDistance);
-            const isFoodTypeMatch = selectedFoodTypes.length === 0 || selectedFoodTypes.some(type => restaurant.foodTypes.includes(type));
+            const isFoodTypeMatch = selectedFoodTypes.length === 0 || selectedFoodTypes.some(type => restaurant.map(ft => ft.toLowerCase()).foodTypes.includes(type));
             const isWithinDistance = !maxDistance || restaurant.distance <= maxDistance;
             return isFoodTypeMatch && isWithinDistance;
         });
@@ -59,7 +63,7 @@ export default function AllRestaurants() {
         });
         axios.get('/allrestaurants')
             .then(response => {
-                setRestaurants(response.data);
+                setRestaurants(originalRestaurants);
             })
             .catch(error => {
                 console.error('Error fetching restaurants:', error);
