@@ -34,13 +34,10 @@ export default function AllRestaurants() {
 
         if (name === 'foodTypes') {
             setFilters(prevFilters => {
-                // Crea una copia dell'array corrente dei foodTypes
                 const updatedFoodTypes = [...prevFilters.foodTypes];
                 if (checked) {
-                    // Se il checkbox è stato selezionato, aggiungi il tipo di cibo
                     updatedFoodTypes.push(value);
                 } else {
-                    // Se il checkbox è stato deselezionato, rimuovi il tipo di cibo
                     const index = updatedFoodTypes.indexOf(value);
                     if (index > -1) {
                         updatedFoodTypes.splice(index, 1);
@@ -101,7 +98,7 @@ export default function AllRestaurants() {
                             <div className="mb-3">
                                 <label className="form-label">Food Types</label>
                                 <div>
-                                    {['pizza', 'Hamburger', 'Sushi', 'Barbecue', 'Vegetarian'].map((type, index) => (
+                                    {['pizza', 'hamburger', 'sushi', 'barbecue', 'vegetarian'].map((type, index) => (
 
                                         <div key={index} className="form-check">
                                             <input className="form-check-input" type="checkbox" id={type} name="foodTypes" value={type} checked={filters.foodTypes.includes(type)} onChange={handleFilterChange} />
