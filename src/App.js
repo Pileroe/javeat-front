@@ -14,7 +14,7 @@ import CheckOut from './components/Pagamento/CheckOut';
 import ConfermaOrder from './components/Pagamento/ConfermaOrder';
 
 
-export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? null)
+export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? {})
 
 
 export const currentUser = atom(
