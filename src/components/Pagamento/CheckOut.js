@@ -48,7 +48,9 @@ export default function CheckOut (){
                         <select value={pay_method} onChange={handleMetodoPagamentoChange}>
                             <option value="carta">Carta di credito</option>
                             <option value="paypal">PayPal</option>
+                            <option value="contanti">Contanti</option>
                         </select>
+                       
                     </form>
                 </div>
             </div>
