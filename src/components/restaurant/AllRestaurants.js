@@ -3,7 +3,6 @@ import axios from 'axios';
 import RestaurantCard from './RestaurantCard';
 
 
-
 export default function AllRestaurants() {
     const [restaurants, setRestaurants] = useState([]);
     const [filters, setFilters] = useState({

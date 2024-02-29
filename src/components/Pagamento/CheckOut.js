@@ -1,19 +1,15 @@
 import { useState } from "react";
-import { Atom, useAtom } from "jotai";
-import { currentOrder } from "../../App";
 
 export default function CheckOut (){
 
   
     const [pay_method,setPayMethod] = useState(0);
-    const [order,setOrder]= useAtom(currentOrder);
 
    
 
     const handleMetodoPagamentoChange = (event) =>
     {
         setPayMethod(event.target.value)
-        setOrder({...order,paymentMethod:event.target.value})
     };
 
     const handleSubmit =  (event) => 
