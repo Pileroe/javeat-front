@@ -23,6 +23,19 @@ export const currentUser = atom(
   },
 )
 
+export const currentOrder = atom(
+    {
+        idRestaurant: "",
+        idUser: "",
+        expected_arrival: "",
+        paymentMethod: "",
+        notes: "",
+        dishes: {}
+      }
+)
+
+
+
 
 function App() {
     return (
@@ -35,8 +48,8 @@ function App() {
                     <Route path="/user/login" element={<Login />} />
                     <Route path="/allrestaurants" element={<AllRestaurants />} />
                     <Route path="/restaurants/:id" element={<RestaurantDetail />} />
-                    <Route path='/pageorder'element={<PageOrder/>} />
-                    <Route path='/checkout'element={<CheckOut/>} />
+                    <Route path='/pageOrder'element={<PageOrder/>} />
+                    <Route path='/checkOut'element={<CheckOut/>} />
 
                 </Routes>
             </BrowserRouter>
