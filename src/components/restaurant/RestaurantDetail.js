@@ -6,7 +6,7 @@ import DishDetail from '../dish/DishDetail';
 export default function RestaurantDetail() {
     const { id } = useParams();
     const [restaurant, setRestaurant] = useState(null);
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState(new Map());
 
     useEffect(() => {
         axios.get(`/restaurants/${id}`)
@@ -19,36 +19,35 @@ export default function RestaurantDetail() {
     }, [id]);
 
     const addToCart = (dish) => {
-        const existingItemIndex = cartItems.findIndex(item => item.id === dish.id);
-        if (existingItemIndex !== -1) {
-            const newCartItems = [...cartItems];
-            newCartItems[existingItemIndex].quantity += 1;
-            setCartItems(newCartItems);
-        } else {
-            setCartItems([...cartItems, { ...dish, quantity: 1 }]);
-        }
+        const updatedCartItems = new Map(cartItems);
+        const quantity = updatedCartItems.get(dish.id) || 0;
+        updatedCartItems.set(dish.id, quantity + 1);
+        setCartItems(updatedCartItems);
     };
 
     const removeFromCart = (dishId) => {
-        const updatedCartItems = cartItems.map(item => {
-            if (item.id === dishId) {
-                return { ...item, quantity: item.quantity - 1 };
-            }
-            return item;
-        }).filter(item => item.quantity > 0);
+        const updatedCartItems = new Map(cartItems);
+        const quantity = updatedCartItems.get(dishId) || 0;
+        if (quantity > 1) {
+            updatedCartItems.set(dishId, quantity - 1);
+        } else {
+            updatedCartItems.delete(dishId);
+        }
         setCartItems(updatedCartItems);
     };
 
     const getTotalPrice = () => {
         let totalPrice = 0;
-        cartItems.forEach(item => {
-            totalPrice += item.price * item.quantity;
-        });
+        for (let [dishId, quantity] of cartItems) {
+            const dish = restaurant.menu.find(dish => dish.id === dishId);
+            if (dish) {
+                totalPrice += dish.price * quantity;
+            }
+        }
         return totalPrice;
     };
 
     const proceedToCheckout = () => {
-        // Implementa qui la logica per procedere con l'ordine
         console.log("Procedi con l'ordine!");
     };
 
@@ -56,6 +55,7 @@ export default function RestaurantDetail() {
         return <p>Loading...</p>;
     }
 
+    console.log(cartItems)
     return (
         <div className="container mt-5">
             <div className="row">
@@ -85,21 +85,24 @@ export default function RestaurantDetail() {
                     <div className="card">
                         <div className="card-body">
                             <h4 className="card-title">Cart</h4>
-                            {cartItems.map((item) => (
-                                <div key={item.id} className="mb-2">
-                                    <div className="d-flex justify-content-between align-items-center mb-1">
-                                        <span>{item.name}</span>
-                                        <span>${item.price * item.quantity}</span>
+                            {[...cartItems].map(([dishId, quantity]) => {
+                                const dish = restaurant.menu.find(dish => dish.id === dishId);
+                                return dish && (
+                                    <div key={dishId} className="mb-2">
+                                        <div className="d-flex justify-content-between align-items-center mb-1">
+                                            <span>{dish.name}</span>
+                                            <span>${dish.price * quantity}</span>
+                                        </div>
+                                        <div className="d-flex justify-content-between align-items-center mb-1">
+                                            <span>Quantity: {quantity}</span>
+                                            <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(dishId)}>Remove</button>
+                                        </div>
                                     </div>
-                                    <div className="d-flex justify-content-between align-items-center mb-1">
-                                        <span>Quantity: {item.quantity}</span>
-                                        <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(item.id)}>Remove</button>
-                                    </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                             <hr />
                             <p>Total Price: ${getTotalPrice()}</p>
-                            {cartItems.length > 0 && (
+                            {cartItems.size > 0 && (
                                 <button className="btn btn-success btn-block" onClick={proceedToCheckout}>Proceed to Checkout</button>
                             )}
                         </div>
