@@ -1,12 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { currentOrder } from '../../App';
+import { currentOrder,currentU } from '../../App';
 import { useAtom } from 'jotai';
 import DishDetail from '../dish/DishDetail';
 
 export default function Restaurant({ restaurant, invertFliker }) {
 
     const [order, setOrder] = useAtom(currentOrder);
+    const [user] = useAtom(currentU);
     const [cartItems, setCartItems] = useState(new Map());
+
+    useEffect(() => {
+        setOrder({ ...order, idRestaurant: restaurant.id, idUser:user.id });
+      },[]);
+    
 
     const addToCart = (dish) => {
         const updatedCartItems = new Map(cartItems);
@@ -39,9 +45,7 @@ export default function Restaurant({ restaurant, invertFliker }) {
 
     const proceedToCheckout = () => {
         setOrder({ ...order, dishes: cartItems });
-        // setIsCheckoutComplete(!isCheckoutComplete);
-        // navigate("/pageOrder");
-        invertFliker('Checkout');
+        invertFliker('PageOrder');
     };
 
     return (

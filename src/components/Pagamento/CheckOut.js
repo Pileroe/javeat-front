@@ -1,60 +1,89 @@
-import { useState } from "react";
-import { Atom, useAtom } from "jotai";
-import { currentOrder } from "../../App";
+import React, { useState, useEffect } from 'react';
+import { useAtom } from 'jotai';
+import axios from 'axios';
+import { currentOrder } from '../../App';
 
-export default function CheckOut ({ invertFliker }){
+const CheckOut = ({ restaurant }) => {
+    const [order, setOrder] = useAtom(currentOrder);
+    const [editedOrder, setEditedOrder] = useState({ ...order });
+    const [dishesDetails, setDishesDetails] = useState([]);
 
-  
-    const [pay_method,setPayMethod] = useState(0);
-    const [order,setOrder]= useAtom(currentOrder);
+    useEffect(() => {
+        const menu = restaurant.menu;
+        const details = Array.from(editedOrder.dishes.entries()).map(([id, quantity]) => {
+            const dishDetail = menu.find(dish => dish.id === parseInt(id));
+            return { ...dishDetail, quantity };
+        });
 
-   
+        setDishesDetails(details);
+    }, [editedOrder.dishes, restaurant.menu]);
 
-    const handleMetodoPagamentoChange = (event) =>
-    {
-        setPayMethod(event.target.value)
-        setOrder({...order,paymentMethod:event.target.value})
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setEditedOrder({ ...editedOrder, [name]: value });
     };
 
-    const handleSubmit =  (event) => 
-    {
-        event.preventDefault();
-        invertFliker('PageOrder');
-        try 
-        {
-          // Invia i dati del checkout all'API
-          
-          console.log('Dati di checkout inviati con successo!');
-        } 
-        catch (error) 
-        {
-          console.error('Si è verificato un errore durante il checkout:', error);
+    const handleDishChange = (id, newQuantity) => {
+        const updatedDishes = new Map(editedOrder.dishes);
+        updatedDishes.set(parseInt(id, 10), parseInt(newQuantity, 10));
+        setEditedOrder({ ...editedOrder, dishes: updatedDishes });
+    };
+
+    const mapDishesToObject = (dishesMap) => {
+        const obj = {};
+        dishesMap.forEach((quantity, id) => {
+            obj[id] = quantity;
+        });
+        return obj;
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const orderToSubmit = {
+            ...editedOrder,
+            dishes: mapDishesToObject(editedOrder.dishes),
+        };
+
+        try {
+            console.log(orderToSubmit);
+        } catch (error) {
+            console.error('Errore nell\'invio dell\'ordine:', error);
+
         }
-      };
+    };
 
-
-
-   
-
-    return(
-
-        <>
-            <div style={{ minHeight: '150vh', backgroundImage: "url('https://cdn.discordapp.com/attachments/1211972312690069504/1212361688813150329/Progetto_senza_titolo-6.png?ex=65f18ecf&is=65df19cf&hm=57230290f233eb9bd2f3fc210141625e60bd328bdca423ff5a35a193de0e7acc&')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
-               <br/><br/><br/><br/><br/><br/>
-                <div className="container d-flex justify-content-center align-items-center  ">
-                    <form onSubmit={handleSubmit}>
-                    <h2>Checkout</h2>
-                    
-                        Metodo di pagamento:
-                        <select value={pay_method} onChange={handleMetodoPagamentoChange}>
-                            <option value="carta">Carta di credito</option>
-                            <option value="paypal">PayPal</option>
-                        </select>
-                    </form>
+    return (
+        <div className='container'>
+            <h2>Checkout</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                    <label>Note dell'ordine</label>
+                    <textarea className="form-control" name="notes" value={editedOrder.notes} onChange={handleChange}></textarea>
                 </div>
-            </div>
-
-        </>
+                <div className="mb-3">
+                    <label>Metodo di pagamento</label>
+                    <select className="form-control" name="paymentMethod" value={editedOrder.paymentMethod} onChange={handleChange}>
+                        <option value="card">Carta di Credito/Debito</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="cash">Contanti alla consegna</option>
+                    </select>
+                </div>
+                {dishesDetails.map((dish, index) => (
+                    <div key={index} className="mb-3">
+                        <label>{dish.name} - {dish.price}€ x {dish.quantity}</label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            value={dish.quantity}
+                            onChange={(e) => handleDishChange(dish.id, e.target.value)}
+                        />
+                    </div>
+                ))}
+                <button type="submit" className="btn btn-success">Invia Ordine</button>
+            </form>
+        </div>
     );
+};
 
-}
+export default CheckOut;

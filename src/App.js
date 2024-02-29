@@ -34,9 +34,6 @@ export const currentOrder = atom(
       }
 )
 
-
-
-
 function App() {
     return (
         <>

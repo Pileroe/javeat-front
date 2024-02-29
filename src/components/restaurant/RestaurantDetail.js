@@ -32,8 +32,8 @@ export default function RestaurantDetail() {
     return (
         <div>
             {fliker=='Restaurant' &&<Restaurant restaurant={restaurant} invertFliker={invertFliker}/>}
-            {fliker=='Checkout' && <CheckOut invertFliker={invertFliker}/>}
-            {fliker=='PageOrder' && <PageOrder/>}
+            {fliker=='Checkout' && <CheckOut restaurant={restaurant}/>}
+            {fliker=='PageOrder' && <PageOrder restaurant={restaurant} invertFliker={invertFliker}/>}
         </div>
     );
 
