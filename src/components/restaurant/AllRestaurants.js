@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import RestaurantCard from './RestaurantCard';
-import { useAtom } from 'jotai';
-import axios from 'axios';
-import { currentUser } from '../../App';
 
 
 export default function AllRestaurants() {
