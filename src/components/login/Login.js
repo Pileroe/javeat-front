@@ -20,18 +20,20 @@ const Login = () =>
             password: passIn.current.value
         }
 
+
+        
         axios.post("/user/login", reqBody)
         .then(resp => {
             if(resp.data)
             {
                 setUser(resp.data);
-                navigate("/homepage");
                 
             }
             else
             {
                 alert('Mail o Password errati.');
             }
+            navigate("/all-restaurants");
         })
         .catch(error =>
             {
@@ -41,28 +43,25 @@ const Login = () =>
 
     return(
         <>
-        
-        <div className="container d-flex justify-content-center align-items-center vh-10 w-50"style={{ border: "1px solid #ddd", padding: "40px" }}>
-            
-            <form>
-                <h2>Accedi</h2>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" className="form-control" ref={mailIn} placeholder="Email"/>
-                    
+            <body style={{ minHeight: '150vh', backgroundImage: "url('https://cdn.discordapp.com/attachments/1211972312690069504/1212361688813150329/Progetto_senza_titolo-6.png?ex=65f18ecf&is=65df19cf&hm=57230290f233eb9bd2f3fc210141625e60bd328bdca423ff5a35a193de0e7acc&')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+               <br/><br/><br/><br/><br/><br/>
+                <div className="container d-flex justify-content-center align-items-center  ">
+                    <form>
+                        <h2>Accedi</h2>
+                        <br/>
+                        <div className="mb-">
+                            <label htmlFor="exampleInputEmail1" className="form-label"><strong>Email address</strong></label>
+                            <input type="email" className="form-control" ref={mailIn} placeholder="Email"/>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputPassword1" className="form-label"><strong>Password</strong></label>
+                            <input type="password" className="form-control" id="exampleInputPassword1" ref={passIn} placeholder="Password"/>
+                        </div>
+                        <input type="button" onClick={handlLogin} className="btn btn-warning" style={{ backgroundColor: "#ff6600", color: "#ffffff" }} value={"Login"}></input>
+                    </form>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" ref={passIn} placeholder="Password"/>
-                </div>
-                {/* <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                </div> */}
-                <button onClick={handlLogin} className="btn btn-primary">Login</button>
-                
-            </form>
-        </div>
+            </body>
+
         
 
         </>
