@@ -12,7 +12,7 @@ import Homepage from './components/homepage/Homepage';
 import PageOrder from './components/Pagamento/PageOrder';
 import CheckOut from './components/Pagamento/CheckOut';
 
-export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? null)
+export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? {})
 
 
 export const currentUser = atom(
