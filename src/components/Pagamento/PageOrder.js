@@ -8,7 +8,7 @@ export default function PageOrder (){
 
     
     const [expected_arrival, setExpected_arrival] = useState(''); // Stato per l'orario di consegna
-    const [notes, setNotes] = useState(''); // Stato per le note
+    const [messageNotes, setMessageNotes] = useState(''); // Stato per le note
     const [order,setOrder] = useAtom(currentOrder);
     
     
@@ -43,10 +43,11 @@ export default function PageOrder (){
     {
         if (event.target && event.target.value !== undefined)
         { 
-            setNotes(event.target.value);
-            setOrder((currentOrder) => ({...currentOrder,notes: event.target.value,}));
+            setMessageNotes(event.target.value);
+            
+            setOrder({...order,notes:event.target.value});
         }
-        console.log(event.target.value.type);
+        
     };  
 
     const handleSubmit = (event) =>
@@ -58,7 +59,7 @@ export default function PageOrder (){
     const handleOrarioChange = (event) =>
     {
         setExpected_arrival(event.target.value);
-        setOrder(...order.expected_arrival=event.target.value);
+        setOrder({...order,expected_arrival:event.target.value});
     }
 
    console.log(order);
@@ -79,7 +80,7 @@ export default function PageOrder (){
                         </select>
                         <div className="mb-3 mt-3">
                             <label htmlFor="exampleInputPassword1" className="form-label"><strong>Notes</strong></label>
-                            <input type="text" className="form-control" id="exampleInputPassword1" value={notes} onChange={handleNotesChange} placeholder="Notes"/>
+                            <input type="text" className="form-control" id="exampleInputPassword1" value={messageNotes} onChange={handleNotesChange} placeholder="Notes"/>
                         </div>
                         <input type="submit" onClick={handleSubmit} className="btn" style={{ backgroundColor: "#ff6600", color: "#ffffff" }} value={"Submit"} />
                     </form>
