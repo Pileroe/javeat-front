@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import DishDetail from '../dish/DishDetail';
+import { useAtom } from 'jotai';
+import { currentOrder } from '../../App'; 
 
 export default function RestaurantDetail() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [restaurant, setRestaurant] = useState(null);
     const [cartItems, setCartItems] = useState(new Map());
+    const [order, setOrder] = useAtom(currentOrder);
 
     useEffect(() => {
         axios.get(`/restaurants/${id}`)
@@ -48,14 +52,14 @@ export default function RestaurantDetail() {
     };
 
     const proceedToCheckout = () => {
-        console.log("Procedi con l'ordine!");
+        setOrder({...order, dishes : cartItems});
+        navigate("/pageOrder");
     };
 
     if (!restaurant) {
         return <p>Loading...</p>;
     }
 
-    console.log(cartItems)
     return (
         <div className="container mt-5">
             <div className="row">
@@ -112,6 +116,7 @@ export default function RestaurantDetail() {
         </div>
     );
 }
+
 
 
 
