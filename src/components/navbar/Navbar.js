@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Navbar.css";
 import { useAtom } from 'jotai';
 import { currentUser } from "../../App";
-import axios from 'axios';
 import { useNavigate } from 'react-router';
 
 const Navbar = () => {
@@ -15,39 +14,30 @@ const Navbar = () => {
         setUser({});
         localStorage.setItem('user', JSON.stringify({}));
         navigate("/");
-        // Aggiorna il localStorage direttamente
     }
 
     return (
-        <div className="row">
-            <nav className="navbar navbar-expand-lg col-12 p-5 justify-content-between" style={{ backgroundColor: "#fbfbfb", height: "80px" }}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-4">
+            <div className="container">
                 <Link to="/" className="navbar-brand">
-                    <img src="https://cdn.discordapp.com/attachments/1211972312690069504/1212065840694952017/9171171b-36ac-4796-8f2e-e1f97bf276e1.png?ex=65f07b47&is=65de0647&hm=44281128b2b1c67c51a380dddb53966a6e22180dcaf9790cc05f8432937ca93e&" alt="Logo" height="200" />
+                    <img src="https://cdn.discordapp.com/attachments/1211972312690069504/1212065840694952017/9171171b-36ac-4796-8f2e-e1f97bf276e1.png?ex=65f07b47&is=65de0647&hm=44281128b2b1c67c51a380dddb53966a6e22180dcaf9790cc05f8432937ca93e&" alt="Logo" height="60" />
                 </Link>
-                <div className="navbar-nav">
-                    {!isUserNotEmpty && (
+                <div className="navbar-nav ms-auto">
+                    {!isUserNotEmpty ? (
+                        <Link className="nav-link" to="user/login">Login</Link>
+                    ) : (
                         <>
-                            <Link className="btn text-black btn-lg bottoneNav" to="user/login">LOGIN</Link>
+                            <Link className="nav-link" to="/my-orders">My Orders</Link>
+                            <button className="btn btn-danger ms-2" onClick={logOut}>Log Out</button>
                         </>
-                    )
-                    }
-
-                    <Link className="btn btn-lg bottoneNav ms-2" to="/allrestaurants">ALL RESTAURANTS</Link>
-                    {isUserNotEmpty && (
-                        <li className="nav-item">
-                            {/* <Link className="text-white nav-link active" to="/" onClick={logOut}>Seal image</Link> */}
-                            <Link to="" className="navbar-brand">
-                                <div
-                                    
-                                    onClick={logOut}
-                                > Log Out</div>
-                            </Link>
-                        </li>
                     )}
+                    <Link className="nav-link ms-2" to="/allrestaurants">All Restaurants</Link>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     );
 }
 
 export default Navbar;
+
+

@@ -22,6 +22,20 @@ const MyOrders = () => {
         }
     }, [user]);
 
+    const cancelOrder = async (orderId) => {
+        try {
+            const response = await axios.delete(`/deliveries/${orderId}`);
+            if (response.status === 200) {
+                // Rimuovi l'ordine dalla lista degli ordini visualizzati
+                setOrders(orders.filter(order => order.id !== orderId));
+            } else {
+                console.error('Errore nella cancellazione dell\'ordine:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Errore nella cancellazione dell\'ordine:', error);
+        }
+    };
+
     return (
         <div className="container">
             <h2>My Orders</h2>
@@ -34,6 +48,10 @@ const MyOrders = () => {
                                     <h5 className="card-title">Ordine #{order.id}</h5>
                                     <p className="card-text">Note: {order.notes}</p>
                                     <p className="card-text">Metodo di pagamento: {order.paymentMethod}</p>
+                                    <p className="card-text">Data di consegna prevista: {order.expectedArrival}</p>
+                                    <p className="card-text">Prezzo piatti: {order.dishesPrice}</p>
+                                    <p className="card-text">Guadagno del rider: {order.riderRevenue}</p>
+                                    <p className="card-text">Prezzo totale: {order.totalPrice}</p>
                                     <p className="card-text">Piatti:</p>
                                     <ul className="list-group">
                                         {order.dishes.map(dish => (
@@ -42,6 +60,9 @@ const MyOrders = () => {
                                             </li>
                                         ))}
                                     </ul>
+                                    <div className="mt-3">
+                                        <button onClick={() => cancelOrder(order.id)} className="btn btn-danger me-2">Annulla Ordine</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -55,6 +76,9 @@ const MyOrders = () => {
 };
 
 export default MyOrders;
+
+
+
 
 
 
