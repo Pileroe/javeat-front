@@ -89,10 +89,11 @@ export default function AllRestaurants() {
     };
 
     return (
-        <div className="container mt-4">
-            <div className="row">
-                <div className="col-md-3">
-                    <div className="card">
+
+        <div className="mt-4 m-4" >
+            <div className="row ">
+                <div className="col col-lg-2">
+                    <div className="card px-2 py-3">
                         <div className="card-body">
                             <h5 className="card-title">Filter</h5>
                             <div className="mb-3">
@@ -113,15 +114,19 @@ export default function AllRestaurants() {
                                 <label htmlFor="distance" className="form-label">Max Distance (km)</label>
                                 <input type="number" className="form-control" id="distance" name="distance" ref={filterRefs.distance} onChange={handleFilterChange} />
                             </div>
-                            <button className="btn btn-primary me-2" onClick={handleFilter}>Apply Filter</button>
-                            <button className="btn btn-secondary" onClick={resetFilter}>Reset Filter</button>
+                            <div className='d-flex '>
+                                <button className="btn btn-dark me-2" onClick={handleFilter}>Apply</button>
+                                <button className="btn btn-secondary" onClick={resetFilter}>Reset</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div className="col-md-9">
+                <div className="col col-lg-10 ps-4">
+                    <div className="mx-4 mb-4"><h1>I più amati della tua zona</h1></div>
                     <div className="row">
                         {restaurants.map(restaurant => (
-                            <div className="col-md-4 mb-4" key={restaurant.id}>
+                            <div className="col col-md-6 col-lg-3 mb-4" key={restaurant.id}>
                                 <RestaurantCard restaurant={restaurant} />
                             </div>
                         ))}
