@@ -27,7 +27,7 @@ const MyOrders = () => {
             const response = await axios.delete(`/deliveries/${orderId}`);
             if (response.status === 200) {
                 // Rimuovi l'ordine dalla lista degli ordini visualizzati
-                setOrders(orders.filter(order => order.id !== orderId));
+                setOrders(orders.filter(order => order.orderId !== orderId));
             } else {
                 console.error('Errore nella cancellazione dell\'ordine:', response.statusText);
             }
@@ -42,10 +42,10 @@ const MyOrders = () => {
             <div className="row">
                 {orders.length > 0 ? (
                     orders.map(order => (
-                        <div key={order.id} className="col-md-4">
+                        <div key={order.orderId} className="col-md-4">
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <h5 className="card-title">Ordine #{order.id}</h5>
+                                    <h5 className="card-title">Ordine #{order.orderId}</h5>
                                     <p className="card-text">Note: {order.notes}</p>
                                     <p className="card-text">Metodo di pagamento: {order.paymentMethod}</p>
                                     <p className="card-text">Data di consegna prevista: {order.expectedArrival}</p>
@@ -56,12 +56,12 @@ const MyOrders = () => {
                                     <ul className="list-group">
                                         {order.dishes.map(dish => (
                                             <li key={dish.id} className="list-group-item">
-                                                {dish.name} - {dish.price}€ x {dish.quantity}
+                                                {dish.category} - {dish.price}€ x {dish.quantity}
                                             </li>
                                         ))}
                                     </ul>
                                     <div className="mt-3">
-                                        <button onClick={() => cancelOrder(order.id)} className="btn btn-danger me-2">Annulla Ordine</button>
+                                        <button onClick={() => cancelOrder(order.orderId)} className="btn btn-danger me-2">Annulla Ordine</button>
                                     </div>
                                 </div>
                             </div>
@@ -76,6 +76,7 @@ const MyOrders = () => {
 };
 
 export default MyOrders;
+
 
 
 
