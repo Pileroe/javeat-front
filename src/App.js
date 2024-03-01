@@ -12,6 +12,7 @@ import Homepage from './components/homepage/Homepage';
 import PageOrder from './components/Pagamento/PageOrder';
 import CheckOut from './components/Pagamento/CheckOut';
 import Footer from './components/footer/Footer';
+import MyOrders from './components/user/MyOrders';
 
 export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? {})
 
