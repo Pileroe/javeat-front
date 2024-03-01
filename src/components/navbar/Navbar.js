@@ -17,13 +17,14 @@ const Navbar = () => {
     }
 
     return (
-        
-        <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#000000", height: "150px" }}>           
-            <div className="container">
-                <Link  to="/" className="navbar-brand ">
-                    <img src="https://cdn.discordapp.com/attachments/1211972312690069504/1213091514042028073/final.png?ex=65f43683&is=65e1c183&hm=9ab0c4f65d0c2ae426bab753481a4e6ee5927d8bb367ca42bb23f0d00a8ea2b9&"alt="Logo" height="180" />
-                </Link>
-                <div className="navbar-nav ">
+        <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#000000", height: "150px" }}>
+            <div className="container-fluid">
+                <div className="navbar-brand-container">
+                    <Link to="/" className="navbar-brand">
+                        <img src="https://cdn.discordapp.com/attachments/1211972312690069504/1213091514042028073/final.png?ex=65f43683&is=65e1c183&hm=9ab0c4f65d0c2ae426bab753481a4e6ee5927d8bb367ca42bb23f0d00a8ea2b9&" alt="Logo" height="180" />
+                    </Link>
+                </div>
+                <div className="navbar-nav">
                     {!isUserNotEmpty ? (
                         <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="user/login">Login</Link>
                     ) : (
@@ -36,8 +37,6 @@ const Navbar = () => {
                 </div>
             </div>
         </nav>
-        
-
     );
 }
 
