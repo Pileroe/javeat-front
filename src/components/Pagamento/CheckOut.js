@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate da react-router-dom
 import { currentOrder } from '../../App';
 
 const CheckOut = ({ restaurant }) => {
+    const navigate = useNavigate(); // Ottieni la funzione di navigazione
     const [order, setOrder] = useAtom(currentOrder);
     const [editedOrder, setEditedOrder] = useState({ ...order });
     const [dishesDetails, setDishesDetails] = useState([]);
@@ -39,17 +41,21 @@ const CheckOut = ({ restaurant }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         const orderToSubmit = {
             ...editedOrder,
             dishes: mapDishesToObject(editedOrder.dishes),
         };
-
+    
         try {
-            console.log(orderToSubmit);
+            const response = await axios.post('/deliveries', orderToSubmit);
+            if (response.status === 200) {
+                navigate('/my-orders');
+            } else {
+                console.error('Errore nell\'invio dell\'ordine:', response.statusText);
+            }
         } catch (error) {
             console.error('Errore nell\'invio dell\'ordine:', error);
-
         }
     };
 

@@ -3,6 +3,7 @@ import { currentUser } from "../../App";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     const [user, setUser] = useAtom(currentUser);
@@ -55,6 +56,7 @@ export default function Login() {
                         <input type="password" className="form-control" id="exampleInputPassword1" ref={passIn} placeholder="Password"/>
                     </div>
                     <button type="button" onClick={handleLogin} className="btn btn-warning" style={{ backgroundColor: "#ff6600", color: "#ffffff" }}>Login</button>
+                    <Link to="/user/register" ><button type="button" className="btn btn-secondary mx-3" >Registrati</button></Link>
                 </form>
             </div>
             {showErrorPopup && (
