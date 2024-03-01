@@ -4,40 +4,28 @@ import { useAtom } from "jotai";
 import { currentOrder } from "../../App";
 
 
-export default function PageOrder (){
+export default function PageOrder ({ restaurant, invertFliker }){
 
-    
-    const [expected_arrival, setExpected_arrival] = useState(''); // Stato per l'orario di consegna
-    const [messageNotes, setMessageNotes] = useState(''); // Stato per le note
+    const [expected_arrival, setExpected_arrival] = useState('');
+    const [messageNotes, setMessageNotes] = useState('');
     const [order,setOrder] = useAtom(currentOrder);
     
-    
-
-
-    function generateTimeSlots(closingTime) 
-    {
+    function generateTimeSlots(closingHour) {
         const slots = [];
         const now = new Date();
-        const [closingHour, closingMinute] = closingTime.split(':').map(Number);
         const closingDate = new Date(now);
-        closingDate.setHours(closingHour, closingMinute, 0, 0);
-      
+        closingDate.setHours(closingHour, 0, 0, 0); 
+    
         let slot = new Date(now);
-        // Arrotonda al quarto d'ora successivo
         slot.setMinutes(Math.ceil(slot.getMinutes() / 15) * 15, 0, 0);
-      
-        while (slot < closingDate) 
-        {
-          slots.push(slot.toTimeString().substring(0, 5));
-          slot = new Date(slot.getTime() + 15 * 60 * 1000); // Aggiunge 15 minuti
+    
+        while (slot < closingDate) {
+            slots.push(slot.toTimeString().substring(0, 5));
+            slot = new Date(slot.getTime() + 15 * 60 * 1000);
         }
-      
+    
         return slots;
     }
-
-
-    let navigate = useNavigate();
-    
 
     const handleNotesChange = (event) =>
     {
@@ -53,7 +41,7 @@ export default function PageOrder (){
     const handleSubmit = (event) =>
     {
         event.preventDefault();
-        navigate('/checkOut');
+        invertFliker('Checkout');
     }
 
     const handleOrarioChange = (event) =>
@@ -62,7 +50,6 @@ export default function PageOrder (){
         setOrder({...order,expected_arrival:event.target.value});
     }
 
-   console.log(order);
     return(
         <>
         
@@ -74,7 +61,7 @@ export default function PageOrder (){
                         <br/>
                         <select className="form-select" id="orario" value={expected_arrival} onChange={handleOrarioChange}>
                             <option value="" disabled>Orari di consegna</option>
-                                    {generateTimeSlots('18:00').map((time, index) => (
+                                    {generateTimeSlots(restaurant.closingHour).map((time, index) => (
                             <option key={index} value={time}>{time}</option>
                             ))}
                         </select>
