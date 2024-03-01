@@ -45,8 +45,9 @@ const CheckOut = ({ restaurant }) => {
             dishes: mapDishesToObject(editedOrder.dishes),
         };
 
-        try {
-            console.log(orderToSubmit);
+        try 
+        {
+            
         } catch (error) {
             console.error('Errore nell\'invio dell\'ordine:', error);
 
