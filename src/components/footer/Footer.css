@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
     background-color: #333;
     color: #fff;
     padding: 20px 0;
@@ -6,13 +6,13 @@
 }
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer-section {
-    margin-bottom: 20px;
-}
+    width: 30%; /* Imposta la larghezza di ciascuna sezione del footer */
+/* }
 
 .footer-section h3 {
     font-size: 18px;
@@ -21,7 +21,6 @@
 .footer-section ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .footer-section ul li {
@@ -34,6 +33,5 @@
 }
 
 .footer-bottom {
-    text-align: right;
-    margin-top: auto;
-}
+    margin-top: 20px;
+} */ 
