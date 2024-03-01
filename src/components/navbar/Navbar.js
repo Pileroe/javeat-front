@@ -25,16 +25,18 @@ const Navbar = () => {
                 <div className="navbar-nav ms-auto">
                     <Link className="nav-link ms-2" to="/allrestaurants">All Restaurants</Link>
                     {!isUserNotEmpty ? (
-                        <Link className="nav-link" to="user/login">Login</Link>
+                        <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="user/login">Login</Link>
                     ) : (
                         <>
-                            <Link className="nav-link" to="/my-orders">My Orders</Link>
+                            <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/my-orders">My Orders</Link>
                             <button className="btn btn-danger ms-2" onClick={logOut}>Log Out</button>
                         </>
                     )}
                 </div>
             </div>
         </nav>
+        
+
     );
 }
 
