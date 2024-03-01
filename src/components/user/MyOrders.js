@@ -56,7 +56,7 @@ const MyOrders = () => {
                                     <ul className="list-group">
                                         {order.dishes.map(dish => (
                                             <li key={dish.id} className="list-group-item">
-                                                {dish.name} - {dish.price}€ x {dish.quantity}
+                                                {dish.category} - {dish.price}€ x {dish.quantity}
                                             </li>
                                         ))}
                                     </ul>
