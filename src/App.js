@@ -29,7 +29,7 @@ export const currentOrder = atom(
         idRestaurant: "",
         idUser: "",
         expected_arrival: "",
-        paymentMethod: "",
+        paymentMethod: "card",
         notes: "",
         dishes: {}
       }
