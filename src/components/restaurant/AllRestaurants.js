@@ -89,7 +89,7 @@ export default function AllRestaurants() {
     };
 
     return (
-        <div className="container">
+        <div className="container mt-4">
             <div className="row">
                 <div className="col-md-3">
                     <div className="card">
