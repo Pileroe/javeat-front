@@ -17,10 +17,10 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#000000", height: "150px" }}> 
+        <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#000000", height: "100px" }}> 
             <div className="container-fluid m-0 px-5">
             <Link  to="/" className="navbar-brand ">
-                    <img src="https://cdn.discordapp.com/attachments/1211972312690069504/1213091514042028073/final.png?ex=65f43683&is=65e1c183&hm=9ab0c4f65d0c2ae426bab753481a4e6ee5927d8bb367ca42bb23f0d00a8ea2b9&"alt="Logo" height="180" />
+                    <img src="/finale_maybe.png"alt="Logo" height="200" />
                 </Link>
                 <div className="navbar-nav ">
                 <Link className="nav-link ms-2 text-white fst-italic fw-semibold fs-5" to="/allrestaurants">All Restaurants</Link>

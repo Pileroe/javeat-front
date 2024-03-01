@@ -14,17 +14,17 @@ export default function Homepage() {
                     <div className="carousel-inner">
                         <div className="carousel-item active">
                             <div className="card">
-                                <img src="https://th.bing.com/th/id/R.6f2f30ab499ab3e654f61f9663c497dc?rik=J00Xl5jFNCNvUA&pid=ImgRaw&r=0" className="card-img-top" alt="First slide" />
+                                <img src="/slide_1.png" className="card-img-top" alt="First slide" />
                             </div>
                         </div>
                         <div className="carousel-item">
                             <div className="card">
-                                <img src="https://cmx.weightwatchers.com/assets-proxy/weight-watchers/image/upload/v1594406683/visitor-site/prod/ca/burgers_mobile_my18jv" className="card-img-top" alt="Second slide" />
+                                <img src="/slide_2.png" className="card-img-top" alt="Second slide" />
                             </div>
                         </div>
                         <div className="carousel-item">
                             <div className="card">
-                                <img src="https://th.bing.com/th/id/R.a3542c1f8f97436db2603c2eabb01e16?rik=4mNdW4e54zigmg&riu=http%3a%2f%2fwww.scattidigusto.it%2fwp-content%2fuploads%2f2016%2f07%2fpizza-Sorbillo-pesto-Nonna-Carolina.jpg&ehk=pE4koIL931w0nOtgk2Df3T9QFyz7iqYg6KICdxD4Smo%3d&risl=&pid=ImgRaw&r=0" className="card-img-top" alt="Third slide" />
+                                <img src="/slide_3.png" className="card-img-top" alt="Third slide" />
                             </div>
                         </div>
                     </div>
