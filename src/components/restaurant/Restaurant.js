@@ -49,13 +49,13 @@ export default function Restaurant({ restaurant, invertFliker }) {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 ">
             <div className="row">
                 <div className="col-md-9">
                     <div className="card mb-4">
                         <div className="card-body">
                             <h2 className="card-title">{restaurant.name}</h2>
-                            <img src={restaurant.img_url} className="card-img-top" alt="Restaurant" />
+                            <img src={restaurant.imgUrl} className="card-img-top" alt="Restaurant" style={{height:"30vh", width:"auto"}} />
                             <p className="card-text">Phone: {restaurant.phone}</p>
                             <p className="card-text">Opening Hour: {restaurant.openingHour}</p>
                             <p className="card-text">Closing Hour: {restaurant.closingHour}</p>

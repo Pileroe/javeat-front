@@ -24,7 +24,7 @@ export default function RestaurantCard({ restaurant }) {
     return (
         <div className='col-md-4 mb-4'>
             <div className="card h-100 border border-dark rounded" style={{ width: '18rem' }}>
-                <img src={restaurant.img_url} className="card-img-top" alt="Restaurant" />
+                <img src={restaurant.imgUrl} className="card-img-top" alt="Restaurant" />
                 <div className="card-body">
                     <h5 className="card-title">{restaurant.name}</h5>
                     <p className="card-text"><strong>Open:</strong> {restaurant.is_open ? 'Yes' : 'No'}</p>
