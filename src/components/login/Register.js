@@ -8,8 +8,21 @@ const Register = () => {
   const [phone,setPhone] = useState('');
   const [positionX,setPositionX] = useState(0);
   const [positionY,setPositionY] = useState(0);
+  const [owner,setOwner] = useState(false);
 
   let navigate = useNavigate();
+
+  function changeInOwner() 
+  {
+
+    var checkbox = document.getElementById("flexSwitchCheckDefault");
+  
+    var isOwner = checkbox.checked;
+    setOwner(isOwner);
+    
+  }
+  
+  
 
   const handleRegistration = async (e) => 
   {
@@ -21,7 +34,8 @@ const Register = () => {
         password,
         phone,
         positionX,
-        positionY
+        positionY,
+        owner
       });
         console.log('Registration successful', response.data);
         navigate('/user/login');
@@ -56,6 +70,10 @@ const Register = () => {
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Position Y</label>
                     <input className="form-control" type="number" placeholder="Position Y" value={positionY} onChange={(e) => setPositionY(e.target.value)}/>
+                </div>
+                <div className="form-check form-switch">
+                  <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Sei un ristoratore?</label>
+                  <input onClick={changeInOwner} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
                 </div>
                 <button onClick={handleRegistration} className="btn btn-primary">Register</button>   
         </form>
