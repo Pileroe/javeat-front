@@ -10,6 +10,8 @@ const Navbar = () => {
     const [user, setUser] = useAtom(currentUser);
     const isUserNotEmpty = Object.keys(user).length > 0;
 
+    const isOwner = isUserNotEmpty && user.owner;
+
     function logOut() {
         setUser({});
         localStorage.setItem('user', JSON.stringify({}));
@@ -17,18 +19,33 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#000000", height: "100px" }}> 
+        <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#000000", height: "100px" }}>
             <div className="container-fluid m-0 px-5">
-            <Link  to="/" className="navbar-brand ">
-                    <img src="/finale_maybe.png"alt="Logo" height="200" />
+                <Link to="/" className="navbar-brand ">
+                    <img src="/finale_maybe.png" alt="Logo" height="200" />
                 </Link>
                 <div className="navbar-nav ">
-                <Link className="nav-link ms-2 text-white fst-italic fw-semibold fs-5" to="/allrestaurants">All Restaurants</Link>
+
+
+
+                    {!isOwner ? (
+                        <Link className="nav-link ms-2 text-white fst-italic fw-semibold fs-5" to="/allrestaurants">All Restaurants</Link>
+                    ) : (
+                        <>
+                            <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/">My Restaurant </Link>
+                        </>
+                    )}
+
+                    {isUserNotEmpty && !isOwner &&
+                        (
+                            <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/my-orders">My Orders</Link>
+                        )
+                    }
+
                     {!isUserNotEmpty ? (
                         <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="user/login">Login</Link>
                     ) : (
                         <>
-                            <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/my-orders">My Orders</Link>
                             <button className="btn btn-danger ms-2" onClick={logOut}>Log Out</button>
                         </>
                     )}

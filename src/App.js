@@ -18,7 +18,8 @@ export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? {})
 
 export const currentUser = atom(
   (get) => get(currentU),
-  (get, set, newStr) => {
+  (get, set, newStr) => 
+  {
     set(currentU, newStr)
     localStorage.setItem('user', JSON.stringify(newStr))
   },
