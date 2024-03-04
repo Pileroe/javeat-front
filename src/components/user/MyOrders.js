@@ -26,7 +26,6 @@ const MyOrders = () => {
         try {
             const response = await axios.delete(`/deliveries/${orderId}`);
             if (response.status === 200) {
-                // Rimuovi l'ordine dalla lista degli ordini visualizzati
                 setOrders(orders.filter(order => order.orderId !== orderId));
             } else {
                 console.error('Errore nella cancellazione dell\'ordine:', response.statusText);
@@ -56,7 +55,7 @@ const MyOrders = () => {
                                     <ul className="list-group">
                                         {order.dishes.map(dish => (
                                             <li key={dish.id} className="list-group-item">
-                                                {dish.category} - {dish.price}€ x {dish.quantity}
+                                                {dish.name} - {dish.price}€ x {dish.quantity}
                                             </li>
                                         ))}
                                     </ul>
