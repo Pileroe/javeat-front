@@ -32,7 +32,7 @@ const Navbar = () => {
                         <Link className="nav-link ms-2 text-white fst-italic fw-semibold fs-5" to="/allrestaurants">All Restaurants</Link>
                     ) : (
                         <>
-                            <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/">My Restaurant </Link>
+                            <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/my-restaurant">My Restaurant </Link>
                         </>
                     )}
 

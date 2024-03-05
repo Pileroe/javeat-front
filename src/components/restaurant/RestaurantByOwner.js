@@ -1,14 +1,13 @@
-import { useAtom } from "jotai";
-import { Link } from "react-router-dom";
-import { currentUser } from "../../App";
-import { useEffect, useState } from "react";
-import axios from "axios";
+// RestaurantByOwner.js
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useAtom } from 'jotai';
+import { currentUser } from '../../App';
+import RestaurantForm from './RestaurantForm';
 
-const RestaurantByOwner = () =>{
-
+const RestaurantByOwner = () => {
     const [user] = useAtom(currentUser);
-    const [distance, setDistance] = useState(null);
-    const [restaurant,setRestaurant]= useState(null);
+    const [restaurant, setRestaurant] = useState(null);
 
     useEffect(() => {
         axios.get(`/restaurants/${user.id}`)
@@ -18,13 +17,22 @@ const RestaurantByOwner = () =>{
             .catch(error => {
                 console.error('Error fetching restaurants:', error);
             });
-    }, []);
+    }, [user]);
 
-
-      return(
-        <>
-            
-        </>
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-6">
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">Restaurant Details</h5>
+                            {restaurant && <RestaurantForm initialRestaurant={restaurant} />}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
-}
+};
+
 export default RestaurantByOwner;
