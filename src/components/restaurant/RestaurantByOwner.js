@@ -1,10 +1,25 @@
-import React from 'react';
-import { useAtom } from 'jotai';
-import { currentUser } from '../../App'; // Update this import path to where your atoms are defined
-import RestaurantForm from './RestaurantForm'; // Ensure this import path matches where your RestaurantForm is defined
+import { useAtom } from "jotai";
+import { Link } from "react-router-dom";
+import { currentUser } from "../../App";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const RestaurantByOwner = () => {
-    const [user, setUser] = useAtom(currentUser); // This line assumes you have a currentUser atom
+const RestaurantByOwner = () =>{
+
+    const [user] = useAtom(currentUser);
+    const [distance, setDistance] = useState(null);
+    const [restaurant,setRestaurant]= useState(null);
+
+    useEffect(() => {
+        axios.get(`/restaurants/${user.id}`)
+            .then(response => {
+                setRestaurant(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching restaurants:', error);
+            });
+    }, []);
+
 
     return (
         <div className="container">
