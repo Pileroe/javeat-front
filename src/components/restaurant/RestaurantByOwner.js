@@ -1,14 +1,13 @@
-import { useAtom } from "jotai";
-import { Link } from "react-router-dom";
-import { currentUser } from "../../App";
-import { useEffect, useState } from "react";
-import axios from "axios";
+// RestaurantByOwner.js
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useAtom } from 'jotai';
+import { currentUser } from '../../App';
+import RestaurantForm from './RestaurantForm';
 
-const RestaurantByOwner = () =>{
-
+const RestaurantByOwner = () => {
     const [user] = useAtom(currentUser);
-    const [distance, setDistance] = useState(null);
-    const [restaurant,setRestaurant]= useState(null);
+    const [restaurant, setRestaurant] = useState(null);
 
     useEffect(() => {
         axios.get(`/restaurants/${user.id}`)
@@ -55,5 +54,6 @@ const RestaurantByOwner = () =>{
             </div>
         </>
     );
-}
+};
+
 export default RestaurantByOwner;
