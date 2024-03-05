@@ -23,7 +23,12 @@ export default function Login() {
             .then(resp => {
                 if (resp.data) {
                     setUser(resp.data);
-                    navigate("/allrestaurants");
+                    if(resp.data.owner)
+                    
+                        navigate("/my-restaurant");
+                    
+                    else
+                        navigate("/allrestaurants");
                 } else {
                     setErrorMessage("Mail o Password errati.");
                     setShowErrorPopup(true);
