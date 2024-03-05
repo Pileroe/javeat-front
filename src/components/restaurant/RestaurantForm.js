@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useAtom } from 'jotai';
+import { currentUser } from '../../App';
 
 const RestaurantForm = () => {
+    const [user] = useAtom(currentUser);
+    const [restaurantId, setRestaurantId] = useState(null);
     const [restaurant, setRestaurant] = useState({
+        id: '',
         phone: '',
         imgUrl: '',
         name: '',
@@ -13,6 +19,28 @@ const RestaurantForm = () => {
         deliveryPricePerUnit: '',
         foodTypes: [],
     });
+    const [isEditing, setIsEditing] = useState(false);
+
+    useEffect(() => {
+        if (user && user.ownerId) {
+            setRestaurantId(user.ownerId);
+        }
+    }, [user]);
+
+    useEffect(() => {
+        const fetchRestaurantData = async () => {
+            try {
+                const response = await axios.get(`/restaurants/${user.ownerId}`);
+                setRestaurant(response.data);
+            } catch (error) {
+                console.error('Failed to fetch restaurant data', error);
+            }
+        };
+
+        if (restaurantId) {
+            fetchRestaurantData();
+        }
+    }, [restaurantId]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -30,61 +58,51 @@ const RestaurantForm = () => {
         setRestaurant({ ...restaurant, foodTypes: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(restaurant);
-        // Submit logic here
+        try {
+            const response = await axios.put(`/restaurants/${restaurant.id}`, restaurant);
+            console.log('Restaurant updated successfully', response.data);
+            setIsEditing(false); 
+        } catch (error) {
+            console.error('Failed to update restaurant', error);
+        }
+    };
+
+    const handleToggleEdit = () => {
+        setIsEditing(!isEditing);
     };
 
     return (
         <div className="container mt-5">
-            <h2>Restaurant Form</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="name"
-                        name="name"
-                        value={restaurant.name}
-                        onChange={handleChange}
-                    />
+            <h2>{isEditing ? 'Edit Restaurant' : 'Restaurant Details'}</h2>
+            {isEditing ? (
+                <form onSubmit={handleSubmit}>
+                    {Object.keys(restaurant).map((key) => (
+                        <div key={key} className="mb-3">
+                            <label htmlFor={key} className="form-label">{key}</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id={key}
+                                name={key}
+                                value={restaurant[key]}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    ))}
+                    <button type="submit" className="btn btn-primary">Update</button>
+                </form>
+            ) : (
+                <div>
+                    {Object.keys(restaurant).map((key) => (
+                        <div key={key} className="mb-3">
+                            <strong>{key}:</strong> {restaurant[key]}
+                        </div>
+                    ))}
+                    <button onClick={handleToggleEdit} className="btn btn-primary">Edit</button>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="phone" className="form-label">Phone</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="phone"
-                        name="phone"
-                        value={restaurant.phone}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="imgUrl" className="form-label">Image URL</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="imgUrl"
-                        name="imgUrl"
-                        value={restaurant.imgUrl}
-                        onChange={handleChange}
-                    />
-                </div>
-                {/* Add more input fields for other properties here */}
-                <div className="mb-3">
-                    <label htmlFor="foodTypes" className="form-label">Food Types</label>
-                    <select multiple className="form-control" id="foodTypes" name="foodTypes" onChange={handleFoodTypesChange}>
-                        {/* Populate options based on your needs */}
-                        <option value="Italian">Italian</option>
-                        <option value="Chinese">Chinese</option>
-                        <option value="Indian">Indian</option>
-                    </select>
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+            )}
         </div>
     );
 };
