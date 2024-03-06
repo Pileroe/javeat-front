@@ -22,6 +22,14 @@ const MyOrders = () => {
         }
     }, [user]);
 
+    function DisplayDate(dateString ) {
+        const [date, time] = dateString.split('T');
+      
+        return (
+            `${date} /${time}`
+        );
+      }
+
     const cancelOrder = async (orderId) => {
         try {
             const response = await axios.delete(`/deliveries/${orderId}`);
@@ -47,7 +55,7 @@ const MyOrders = () => {
                                     <h5 className="card-title">Ordine #{order.orderId}</h5>
                                     <p className="card-text">Note: {order.notes}</p>
                                     <p className="card-text">Metodo di pagamento: {order.paymentMethod}</p>
-                                    <p className="card-text">Data di consegna prevista: {order.expectedArrival}</p>
+                                    <p className="card-text">Data di consegna prevista: {DisplayDate(order.expectedArrival)}</p>
                                     <p className="card-text">Prezzo piatti: {order.dishesPrice}</p>
                                     <p className="card-text">Guadagno del rider: {order.riderRevenue}</p>
                                     <p className="card-text">Prezzo totale: {order.totalPrice}</p>

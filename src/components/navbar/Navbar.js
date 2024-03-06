@@ -19,8 +19,8 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg justify-content-between" style={{ backgroundColor: "#000000", height: "100px" }}>
-            <div className="container-fluid m-0 px-5">
+        <nav className="navbar navbar-expand-lg justify-content-between mb-5" style={{ backgroundColor: "#000000", height: "100px" }}>
+            <div className="container-fluid m-5 px-5">
                 <Link to="/" className="navbar-brand ">
                     <img src="/finale_maybe.png" alt="Logo" height="200" />
                 </Link>

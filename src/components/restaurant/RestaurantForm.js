@@ -54,7 +54,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container mb-4">
             <h2>{isEditing ? 'Edit Restaurant' : 'Restaurant Details'}</h2>
             {isEditing ? (
                 <form onSubmit={useEffect}>
@@ -135,7 +135,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="mb-3">
+                    {/* <div className="mb-3">
                         <label htmlFor="isOpen" className="form-label">Is Open</label>
                         <input
                             type="checkbox"
@@ -145,7 +145,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                             checked={isOpenChecked}
                             onChange={handleIsOpenChange}
                         />
-                    </div>
+                    </div> */}
                     <button type="submit" onClick={handleSubmit} className="btn btn-primary">Update</button>
                 </form>
             ) : (
@@ -171,9 +171,9 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     <div className="mb-3">
                         <strong>Max Delivery Distance:</strong> {restaurant.maxDeliveryDistance}
                     </div>
-                    <div className="mb-3">
+                    {/* <div className="mb-3">
                         <strong>Is Open:</strong> {restaurant.isOpen ? 'Yes' : 'No'}
-                    </div>
+                    </div> */}
                     <button onClick={handleToggleEdit} className="btn btn-primary">Edit</button>
                 </div>
             )}
