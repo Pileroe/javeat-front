@@ -18,9 +18,24 @@ const MyDishes = (props) => {
         [props.flicker]
     );
 
+    const handleDelete = async (dishId) => {
+        try {
+          // Invia la richiesta di eliminazione al server
+          await axios.delete(`/dishes/${dishId}`);
+    
+          // Aggiorna lo stato locale rimuovendo il piatto eliminato
+          setDishes((prevDishes) => prevDishes.filter((dish) => dish.id !== dishId));
+        } catch (error) {
+          console.error('Error deleting dish:', error);
+        }
+      };
+
     // src="/static/burger.jpg"
     return (
         <div className="container-fluid">
+            <br/>
+            <h2>My Menu</h2>
+            <br/>
             <div className="row">
                 {dishes.map((dish) => (
                     <div key={dish.id} className="col-md-6 mb-4">
@@ -31,6 +46,7 @@ const MyDishes = (props) => {
                                 <p className="card-text custom-font">{dish.description}</p>
                                 <p className="card-text custom-font"><small className="text-muted">{dish.category}</small></p>
                                 <p className="card-text custom-font">Price: ${dish.price}</p>
+                                <button onClick={() => handleDelete(dish.id)} className="btn btn-danger">Delete</button>
                             </div>
                         </div>
                     </div>
