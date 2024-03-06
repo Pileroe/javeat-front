@@ -51,16 +51,18 @@ export default function Restaurant({ restaurant, invertFliker }) {
     };
 
     return (
+        <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px' }}>
+
         <div className="container mt-5 ">
             <div className="row">
                 <div className="col-md-9">
                     <div className="card mb-4">
                         <div className="card-body">
                             <h2 className="card-title">{restaurant.name}</h2>
-                            <img src={restaurant.imgUrl} className="card-img-top" alt="Restaurant" style={{ height: "30vh", width: "auto" }} />
-                            <p className="card-text">Phone: {restaurant.phone}</p>
-                            <p className="card-text">Opening Hour: {restaurant.openingHour}</p>
-                            <p className="card-text">Closing Hour: {restaurant.closingHour}</p>
+                            <img src={"/static/"+restaurant.imgUrl} className="card-img-top" alt="Restaurant" style={{ height: "30vh", width: "auto" }} />
+                            <p className="card-text"><strong>Phone:</strong> {restaurant.phone}</p>
+                            <p className="card-text"><strong>Opening Hour:</strong> {restaurant.openingHour}</p>
+                            <p className="card-text"><strong>Closing Hour:</strong> {restaurant.closingHour}</p>
                         </div>
                     </div>
                     <div className="card mb-4">
@@ -107,6 +109,7 @@ export default function Restaurant({ restaurant, invertFliker }) {
                     )
                 }
             </div>
+        </div>
         </div>
     );
 }
