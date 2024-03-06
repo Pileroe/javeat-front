@@ -54,7 +54,8 @@ const RestaurantForm = ({ initialRestaurant }) => {
     };
 
     return (
-        <div className="container mb-4">
+
+        <div>
             <h2>{isEditing ? 'Edit Restaurant' : 'Restaurant Details'}</h2>
             {isEditing ? (
                 <form onSubmit={useEffect}>
@@ -72,7 +73,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     <div className="mb-3">
                         <label htmlFor="openingHour" className="form-label">Opening Hour</label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="openingHour"
                             name="openingHour"
@@ -178,6 +179,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                 </div>
             )}
         </div>
+        
     );
 
 

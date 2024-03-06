@@ -26,6 +26,8 @@ const RestaurantByOwner = () => {
     }
 
     return (
+        <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url('https://cdn.discordapp.com/attachments/1211972312690069504/1212361688813150329/Progetto_senza_titolo-6.png?ex=65f18ecf&is=65df19cf&hm=57230290f233eb9bd2f3fc210141625e60bd328bdca423ff5a35a193de0e7acc&')", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px' }}>
+
         <div className="container">
             <div className="row">
                 <div className="col-6">
@@ -47,6 +49,8 @@ const RestaurantByOwner = () => {
                 </div>
             </div>
         </div>
+        </div>
+
     );
 };
 

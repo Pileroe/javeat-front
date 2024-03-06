@@ -40,7 +40,7 @@ const MyDishes = (props) => {
                 {dishes.map((dish) => (
                     <div key={dish.id} className="col-md-6 mb-4">
                         <div className="card flex-column d-flex">
-                            <img src="/static/burger.jpg" className="card-img-top w-100" style={{ objectFit: 'cover', height: '200px' }} alt="..." />
+                            <img src={"/static/"+dish.imgUrl} className="card-img-top w-100" style={{ objectFit: 'cover', height: '200px' }} alt="..." />
                             <div className="card-body d-flex flex-column">
                                 <h5 className="card-title text-truncate custom-font">{dish.name}</h5>
                                 <p className="card-text custom-font">{dish.description}</p>
