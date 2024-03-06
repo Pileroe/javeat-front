@@ -45,55 +45,57 @@ const DishForm = (props) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <div className="mb-3">
-                    <label className="form-label">Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Inserisci nome del piatto"
-                        name="name"
-                        value={dish.name}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Category</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Inserisci categoria del piatto"
-                        name="category"
-                        value={dish.category}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Price</label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        placeholder="Inserisci prezzo del piatto"
-                        name="price"
-                        value={dish.price}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Ingredients</label>
-                    <textarea
-                        className="form-control"
-                        id="exampleFormControlTextarea1"
-                        rows="3"
-                        onChange={handleTextareaChange}
-                        value={dish.ingredients.join('\n')}
-                    ></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary">Invia</button>
+        <form className="mt-4" onSubmit={handleSubmit}>
+          <div className="mt-4" style={{ padding: '20px' }}>
+            <div className="mb-3">
+              <label className="form-label"><strong>Name</strong></label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Inserisci nome del piatto"
+                name="name"
+                value={dish.name}
+                onChange={handleInputChange}
+              />
             </div>
+            <div className="mb-3">
+              <label className="form-label"><strong>Category</strong></label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Inserisci categoria del piatto"
+                name="category"
+                value={dish.category}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label"><strong>Price</strong></label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Inserisci prezzo del piatto"
+                name="price"
+                value={dish.price}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label"><strong>Ingredients</strong></label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+                onChange={handleTextareaChange}
+                value={dish.ingredients.join('\n')}
+              ></textarea>
+            </div>
+            <button type="submit" className="btn btn-primary">Invia</button>
+          </div>
         </form>
-    );
+      );
+      
+      
 };
 
 export default DishForm;

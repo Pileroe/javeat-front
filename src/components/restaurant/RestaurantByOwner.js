@@ -31,11 +31,11 @@ const RestaurantByOwner = () => {
                 <div className="col-6">
                     <div className="card">
                         <div className="card-body">
-                            <h5 className="card-title">Restaurant Details</h5>
+                            <h5 className="card-title"></h5>
                             {restaurant && <RestaurantForm initialRestaurant={restaurant} />}
                         </div>
                     </div>
-                    <div className="card">
+                    <div className="card mt-5">
                         {restaurant && <DishForm invertFlicker={invertFlicker}/>}
                     </div>
                 </div>
