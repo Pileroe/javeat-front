@@ -84,7 +84,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     <div className="mb-3">
                         <label htmlFor="closingHour" className="form-label">Closing Hour</label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="closingHour"
                             name="closingHour"
