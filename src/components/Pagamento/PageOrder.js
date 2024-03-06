@@ -53,7 +53,7 @@ export default function PageOrder ({ restaurant, invertFliker }){
     return(
         <>
         
-            <div style={{ minHeight: '150vh', backgroundImage: "url('https://cdn.discordapp.com/attachments/1211972312690069504/1212361688813150329/Progetto_senza_titolo-6.png?ex=65f18ecf&is=65df19cf&hm=57230290f233eb9bd2f3fc210141625e60bd328bdca423ff5a35a193de0e7acc&')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+            <div style={{ minHeight: '150vh', backgroundSize: 'cover', backgroundPosition: 'center'}}>
                <br/><br/><br/><br/><br/><br/>
                 <div className="container d-flex justify-content-center align-items-center  ">
                     <form>
