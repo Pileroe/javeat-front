@@ -22,7 +22,7 @@ export default function RestaurantCard({ restaurant }) {
 
     return (
         <div className='mx-0'>
-            <div className="card h-100 border border-dark rounded">
+            <div className="card h-100 border border-dark rounded  border border-0">
                 <Link to={`/restaurants/${restaurant.id}`}>
                     <img
                         src={"/static/" + restaurant.imgUrl}
@@ -36,8 +36,8 @@ export default function RestaurantCard({ restaurant }) {
                         }}
                     />
                 </Link>
-                <div className="card-body border border-0" style={{ background: '#d9d9d9' }}>
-                    <h5 className="card-title">{restaurant.name}</h5>
+                <div className="card-body" style={{ background: '#d9d9d9' }}>
+                    <h3 className="card-title" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}><strong>{restaurant.name}</strong></h3>
                     {/* non restituire che non sono aperti */}
                     <p className="card-text"><strong>Open:</strong> {restaurant.is_open ? 'Yes' : 'No'}</p>
                     <p className="card-text" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
