@@ -14,6 +14,7 @@ import CheckOut from './components/Pagamento/CheckOut';
 import MyOrders from './components/user/MyOrders';
 import RestaurantByOwner from './components/restaurant/RestaurantByOwner';
 import MyDishes from './components/restaurant/MyDishes';
+import MyStatistics from './components/restaurant/MyStatistics';
 
 export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? {})
 
@@ -53,6 +54,7 @@ function App() {
                     <Route path='/my-orders'element={<MyOrders/>} />
                     <Route path='/my-restaurant'element={<RestaurantByOwner/>} />
                     <Route path='/dishes/:id'element={<MyDishes/>} />
+                    <Route path='/my-statistics'element={<MyStatistics/>} />
                 </Routes>
             </BrowserRouter>
         </>
