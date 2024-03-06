@@ -141,7 +141,7 @@ export default function AllRestaurants() {
 
                     <div className="row px-1">
                         {restaurants.map(restaurant => (
-                            <div className="col col-md-6 col-lg-3 px-4" key={restaurant.id}>
+                            <div className="col col-md-6 col-lg-3 px-4 pb-3" key={restaurant.id}>
                                 <RestaurantCard restaurant={restaurant} />
                             </div>
                         ))}
