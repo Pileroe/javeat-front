@@ -1,13 +1,15 @@
-// RestaurantByOwner.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAtom } from 'jotai';
 import { currentUser } from '../../App';
 import RestaurantForm from './RestaurantForm';
+import DishForm from './DishForm';
+import MyDishes from './MyDishes';
 
 const RestaurantByOwner = () => {
     const [user] = useAtom(currentUser);
     const [restaurant, setRestaurant] = useState(null);
+    const [flicker,setFlicker]= useState(false);
 
     useEffect(() => {
         axios.get(`/restaurants/${user.id}`)
@@ -19,6 +21,10 @@ const RestaurantByOwner = () => {
             });
     }, [user]);
 
+    function invertFlicker(){
+        setFlicker(!flicker);
+    }
+
     return (
         <div className="container">
             <div className="row">
@@ -28,6 +34,15 @@ const RestaurantByOwner = () => {
                             <h5 className="card-title">Restaurant Details</h5>
                             {restaurant && <RestaurantForm initialRestaurant={restaurant} />}
                         </div>
+                    </div>
+                    <div className="card">
+                        {restaurant && <DishForm invertFlicker={invertFlicker}/>}
+                    </div>
+                </div>
+                
+                <div className="col-6">
+                    <div className="card">
+                        {restaurant && <MyDishes restaurant={restaurant} flicker={flicker} />}
                     </div>
                 </div>
             </div>

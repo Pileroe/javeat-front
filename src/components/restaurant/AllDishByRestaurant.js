@@ -1,8 +1,0 @@
-const AllDishByRestaurant =() =>
-{
-    return(
-        <>
-        
-        </>
-    );
-}

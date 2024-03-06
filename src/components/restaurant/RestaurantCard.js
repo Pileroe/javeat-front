@@ -25,7 +25,7 @@ export default function RestaurantCard({ restaurant }) {
             <div className="card h-100 border border-dark rounded">
                 <Link to={`/restaurants/${restaurant.id}`}>
                     <img
-                        src={restaurant.imgUrl}
+                        src={"/static/"+restaurant.imgUrl}
                         alt="Restaurant"
                         className="card-img-top"
                         style={{

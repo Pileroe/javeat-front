@@ -13,6 +13,7 @@ import PageOrder from './components/Pagamento/PageOrder';
 import CheckOut from './components/Pagamento/CheckOut';
 import MyOrders from './components/user/MyOrders';
 import RestaurantByOwner from './components/restaurant/RestaurantByOwner';
+import MyDishes from './components/restaurant/MyDishes';
 
 export const currentU = atom(JSON.parse(localStorage.getItem('user')) ?? {})
 
@@ -51,6 +52,7 @@ function App() {
                     <Route path='/pageOrder'element={<PageOrder/>} />
                     <Route path='/my-orders'element={<MyOrders/>} />
                     <Route path='/my-restaurant'element={<RestaurantByOwner/>} />
+                    <Route path='/dishes/:id'element={<MyDishes/>} />
                 </Routes>
             </BrowserRouter>
         </>
