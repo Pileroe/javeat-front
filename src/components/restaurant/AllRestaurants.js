@@ -7,6 +7,7 @@ import { currentUser } from "../../App";
 export default function AllRestaurants() {
     const [user, setUser] = useAtom(currentUser);
     const [restaurants, setRestaurants] = useState([]);
+    const [foodTypes, setFoodTypes] = useState([]);
     const [filters, setFilters] = useState({
         foodTypes: [],
         distance: 1000,
@@ -19,6 +20,15 @@ export default function AllRestaurants() {
     };
 
     useEffect(() => {
+
+        axios.get('/foodtypes')
+        .then(response => {
+            setFoodTypes(response.data);
+        })
+        .catch(error => {
+            console.error('Error fetching foodtypes:', error);
+        });
+
         axios.get('/allrestaurants')
             .then(response => {
                 setRestaurants(response.data);
@@ -98,7 +108,7 @@ export default function AllRestaurants() {
                             <div className="mb-3">
                                 <label className="form-label">Food Types</label>
                                 <div>
-                                    {['pizza', 'hamburger', 'sushi', 'barbecue', 'vegetarian'].map((type, index) => (
+                                    {foodTypes.map((type, index) => (
 
                                         <div key={index} className="form-check">
                                             <input className="form-check-input" type="checkbox" id={type} name="foodTypes" value={type} checked={filters.foodTypes.includes(type)} onChange={handleFilterChange} />
