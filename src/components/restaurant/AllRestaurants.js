@@ -102,7 +102,7 @@ export default function AllRestaurants() {
         <div className="mt-4 m-4" >
             <div className="row ">
                 <div className="col col-lg-2">
-                    <div className="card px-2 py-3 " style={{position: "sticky", top: "150px", zIndex: "1000"}}>
+                    <div className="card px-2 py-3 border border-0" style={{position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF'}}>
                         <div className="card-body">
                             <h5 className="card-title">Filter</h5>
                             <div className="mb-3">
