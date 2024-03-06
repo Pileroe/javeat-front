@@ -47,7 +47,7 @@ const Navbar = () => {
                         <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="user/login">Login</Link>
                     ) : (
                         <>
-                            <button className="btn btn-danger ms-2" onClick={logOut}>Log Out</button>
+                            <button className="nav-link text-white fst-italic fw-semibold fs-5" onClick={logOut}>Log Out</button>
                         </>
                     )}
                 </div>
