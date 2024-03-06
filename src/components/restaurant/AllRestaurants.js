@@ -4,7 +4,6 @@ import RestaurantCard from './RestaurantCard';
 import { useAtom } from "jotai";
 import { currentUser } from "../../App";
 
-
 export default function AllRestaurants() {
     const [user, setUser] = useAtom(currentUser);
     const [restaurants, setRestaurants] = useState([]);
