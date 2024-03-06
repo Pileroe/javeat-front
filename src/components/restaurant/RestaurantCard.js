@@ -21,7 +21,7 @@ export default function RestaurantCard({ restaurant }) {
     }, [user, restaurant]);
 
     return (
-        <div className='mx-4'>
+        <div className='mx-0'>
             <div className="card h-100 border border-dark rounded">
                 <Link to={`/restaurants/${restaurant.id}`}>
                     <img
