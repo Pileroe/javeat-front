@@ -33,6 +33,7 @@ const Navbar = () => {
                     ) : (
                         <>
                             <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/my-restaurant">My Restaurant </Link>
+                            <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/my-statistics">My Statistics</Link>
                         </>
                     )}
 
