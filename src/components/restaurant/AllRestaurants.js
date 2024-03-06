@@ -122,23 +122,26 @@ export default function AllRestaurants() {
                         </div>
                     </div>
                 </div>
-                <div className="col col-lg-10 ps-4">
+                <div className="col col-lg-10 px-5">
                     <div className="mx-4 mb-4"><h1>I più amati della tua zona</h1></div>
-                    <div className="row pe-5">
+                    <div className="row">
                         <div className='conteiner-fluid mb-5 col-4' >
-                            <img src="/static/2.jpg" className="img-thumbnail m-4 rounded-5"/>
+                            <img src="/static/2.jpg" className="img-thumbnail  rounded-5" />
                         </div>
                         <div className='conteiner-fluid mb-5 col-4' >
-                          
-                             <img src="/static/1.jpg" className="img-thumbnail m-4 rounded-5  "  />
-                           
+
+                            <img src="/static/1.jpg" className="img-thumbnail  rounded-5  " />
+
                         </div>
                         <div className='conteiner-fluid mb-5 col-4' >
-                          
-                            <img src="/static/3.jpg" className="img-thumbnail m-4 rounded-5"  />
+
+                            <img src="/static/3.jpg" className="img-thumbnail  rounded-5" />
                         </div>
+                    </div>
+
+                    <div className="row px-1">
                         {restaurants.map(restaurant => (
-                            <div className="col col-md-6 col-lg-3 mb-4" key={restaurant.id}>
+                            <div className="col col-md-6 col-lg-3 px-4" key={restaurant.id}>
                                 <RestaurantCard restaurant={restaurant} />
                             </div>
                         ))}
