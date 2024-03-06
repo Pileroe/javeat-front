@@ -74,7 +74,9 @@ export default function Restaurant({ restaurant, invertFliker }) {
                         <div className="col-md-3">
                             <div className="card shadow-sm">
                                 <div className="card-body">
-                                    <h4 className="card-title">Cart</h4>
+                                <div>
+                                <img src="/OIP.jpg" alt="Cart" style={{ width: "30px", marginRight: "10px" }} />
+                                    <h4 className="card-title">Cart</h4></div>
                                     {[...cartItems].map(([dishId, quantity]) => {
                                         const dish = restaurant.menu.find(dish => dish.id === dishId);
                                         return dish && (
@@ -102,6 +104,6 @@ export default function Restaurant({ restaurant, invertFliker }) {
                 }
             </div>
         </div>
-        </div>
+       
     );
 }

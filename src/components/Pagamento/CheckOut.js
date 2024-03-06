@@ -7,7 +7,7 @@ import { currentOrder } from '../../App';
 const CheckOut = ({ restaurant }) => {
     const navigate = useNavigate(); // Ottieni la funzione di navigazione
     const [order, setOrder] = useAtom(currentOrder);
-    const [editedOrder, setEditedOrder] = useState({ ...order });
+    const [editedOrder, setEditedOrder] = useState({ dishes: new Map(), ...order});
     const [dishesDetails, setDishesDetails] = useState([]);
 
     useEffect(() => {
