@@ -12,7 +12,7 @@ const RestaurantByOwner = () => {
     const [flicker,setFlicker]= useState(false);
 
     useEffect(() => {
-        axios.get(`/restaurants/${user.id}`)
+        axios.get(`/restaurantowner/${user.id}`)
             .then(response => {
                 setRestaurant(response.data);
             })
