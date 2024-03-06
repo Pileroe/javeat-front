@@ -10,7 +10,7 @@ export default function Restaurant({ restaurant, invertFliker }) {
 
     useEffect(() => {
         setOrder({ ...order, idRestaurant: restaurant.id, idUser: user.id });
-    }, [order, restaurant.id, setOrder, user.id]);
+    }, []);
 
     const addToCart = (dish) => {
         const updatedCartItems = new Map(cartItems);
@@ -44,20 +44,7 @@ export default function Restaurant({ restaurant, invertFliker }) {
     return (
         <div className="mx-5 mt-5">
             <div className="row">
-                <div className='col-md-2'>
-                    <div className="card mb-4 shadow-sm">
-                        <div className="card-body">
-                            <h3 className="card-title">Menu</h3>
-                            {restaurant.menu.map((dish) => (
-                                <div key={dish.id} className="mb-3">
-                                    <DishDetail dish={dish} />
-                                    {user && Object.keys(user).length > 0 && (<button className="btn btn-primary mr-2" onClick={() => addToCart(dish)}>Add to Cart</button>)}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-7">
+                <div className="col-md-9">
                     <div className="card mb-4 shadow-sm"> {/* Added shadow-sm for a subtle shadow */}
                         {/* Image set to cover the entire top area */}
                         <img src={`/static/${restaurant.imgUrl}`} className="card-img-top" alt="Restaurant" style={{ width: "100%", objectFit: "cover", maxHeight: "40vh" }} />
@@ -68,11 +55,25 @@ export default function Restaurant({ restaurant, invertFliker }) {
                             <p className="card-text">Closing Hour: {restaurant.closingHour}</p>
                         </div>
                     </div>
+
+                    <div className="card mb-4 shadow-sm">
+                        <div className="card-body">
+                            <h3 className="card-title">Menu</h3>
+                            <div className='row'>
+                                {restaurant.menu.map((dish) => (
+                                    <div key={dish.id} className="mb-3 col-4">
+                                        <DishDetail dish={dish} />
+                                        {user && Object.keys(user).length > 0 && (<button className="btn btn-primary mr-2" onClick={() => addToCart(dish)}>Add to Cart</button>)}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 {user && Object.keys(user).length > 0 &&
                     (
                         <div className="col-md-3">
-                            <div className="card shadow-sm">
+                            <div className="card shadow-sm" style={{ position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF' }}>
                                 <div className="card-body">
                                 <div>
                                 <img src="/OIP.jpg" alt="Cart" style={{ width: "30px", marginRight: "10px" }} />
@@ -98,6 +99,26 @@ export default function Restaurant({ restaurant, invertFliker }) {
                                         <button className="btn btn-success btn-block" onClick={proceedToCheckout}>Proceed to Checkout</button>
                                     )}
                                 </div>
+                            </div>
+                        </div>
+                    )
+                }
+                {!Object.keys(user).length > 0 &&
+                    (
+                        <div className="col-md-3">
+                            <div style={{ position: "sticky", top: "30px", zIndex: "1000" }}>
+                            <div className='conteiner-fluid mb-1' >
+                                <img src="/static/2.jpg" className="img-thumbnail  rounded-5" />
+                            </div>
+                            <div className='conteiner-fluid mb-1' >
+
+                                <img src="/static/1.jpg" className="img-thumbnail  rounded-5  " />
+
+                            </div>
+                            <div className='conteiner-fluid mb-1' >
+
+                                <img src="/static/3.jpg" className="img-thumbnail  rounded-5" />
+                            </div>
                             </div>
                         </div>
                     )
