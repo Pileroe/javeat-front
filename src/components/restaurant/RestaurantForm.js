@@ -177,4 +177,3 @@ const RestaurantForm = ({ initialRestaurant }) => {
 };
 
 export default RestaurantForm;
-
