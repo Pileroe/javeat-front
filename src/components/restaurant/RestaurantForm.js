@@ -11,13 +11,20 @@ const RestaurantForm = ({ initialRestaurant }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setRestaurant({ ...restaurant, [name]: value });
+        if (name === "foodTypes") {
+            // Converti la stringa di input in un array, dividendo per la virgola
+            const arrayValue = value.split(',').map(item => item.trim()); // Rimuove gli spazi bianchi all'inizio e alla fine di ogni elemento
+            setRestaurant({ ...restaurant, [name]: arrayValue });
+        } else {
+            // Per tutti gli altri campi, usa il comportamento predefinito
+            setRestaurant({ ...restaurant, [name]: value });
+        }
     };
 
     const useEffect = async (e) => {
         e.preventDefault();
         try {
-            const updatedRestaurant = { ...restaurant, id : user.id };
+            const updatedRestaurant = { ...restaurant, id: user.id };
             const response = await axios.get(`/restaurants/${restaurant.id}`, updatedRestaurant);
             console.log('Restaurant updated successfully', response.data);
             setIsEditing(false);
@@ -91,7 +98,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                             className="form-control"
                             id="foodTypes"
                             name="foodTypes"
-                            value={restaurant.foodTypes.join(', ')}
+                            value={Array.isArray(restaurant.foodTypes) ? restaurant.foodTypes.join(', ') : ''}
                             onChange={handleChange}
                         />
                     </div>
