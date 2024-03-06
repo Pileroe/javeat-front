@@ -54,7 +54,8 @@ const RestaurantForm = ({ initialRestaurant }) => {
     };
 
     return (
-        <div className="container mb-4">
+
+        <div>
             <h2>{isEditing ? 'Edit Restaurant' : 'Restaurant Details'}</h2>
             {isEditing ? (
                 <form onSubmit={useEffect}>
@@ -72,7 +73,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     <div className="mb-3">
                         <label htmlFor="openingHour" className="form-label">Opening Hour</label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="openingHour"
                             name="openingHour"
@@ -83,7 +84,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     <div className="mb-3">
                         <label htmlFor="closingHour" className="form-label">Closing Hour</label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="closingHour"
                             name="closingHour"
@@ -135,18 +136,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                             onChange={handleChange}
                         />
                     </div>
-                    {/* <div className="mb-3">
-                        <label htmlFor="isOpen" className="form-label">Is Open</label>
-                        <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="isOpen"
-                            name="isOpen"
-                            checked={isOpenChecked}
-                            onChange={handleIsOpenChange}
-                        />
-                    </div> */}
-                    <button type="submit" onClick={handleSubmit} className="btn btn-primary">Update</button>
+                    <button type="submit" onClick={handleSubmit} className="btn" style={{backgroundColor: "#2EC4B6"}}>Update</button>
                 </form>
             ) : (
                 <div>
@@ -174,10 +164,11 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     {/* <div className="mb-3">
                         <strong>Is Open:</strong> {restaurant.isOpen ? 'Yes' : 'No'}
                     </div> */}
-                    <button onClick={handleToggleEdit} className="btn btn-primary">Edit</button>
+                    <button onClick={handleToggleEdit} className="btn" style={{backgroundColor: "#2EC4B6"}}>Edit</button>
                 </div>
             )}
         </div>
+        
     );
 
 

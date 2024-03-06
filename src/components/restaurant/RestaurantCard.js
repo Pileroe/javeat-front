@@ -36,7 +36,7 @@ export default function RestaurantCard({ restaurant }) {
                         }}
                     />
                 </Link>
-                <div className="card-body">
+                <div className="card-body border border-0" style={{ background: '#d9d9d9' }}>
                     <h5 className="card-title">{restaurant.name}</h5>
                     {/* non restituire che non sono aperti */}
                     <p className="card-text"><strong>Open:</strong> {restaurant.is_open ? 'Yes' : 'No'}</p>

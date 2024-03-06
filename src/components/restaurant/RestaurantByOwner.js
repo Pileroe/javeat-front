@@ -26,6 +26,8 @@ const RestaurantByOwner = () => {
     }
 
     return (
+        <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px' }}>
+
         <div className="container">
             <div className="row">
                 <div className="col-6">
@@ -47,6 +49,8 @@ const RestaurantByOwner = () => {
                 </div>
             </div>
         </div>
+        </div>
+
     );
 };
 
