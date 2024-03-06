@@ -30,7 +30,7 @@ const MyDishes = (props) => {
         }
       };
 
-    // src="/static/burger.jpg"
+   
     return (
         <div className="container-fluid">
             <br/>
