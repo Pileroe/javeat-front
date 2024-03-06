@@ -90,7 +90,7 @@ const DishForm = (props) => {
                 value={dish.ingredients.join('\n')}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">Invia</button>
+            <button type="submit" className="btn" style={{backgroundColor: "#2EC4B6"}}>Invia</button>
           </div>
         </form>
       );

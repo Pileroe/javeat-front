@@ -98,7 +98,7 @@ export default function AllRestaurants() {
     };
 
     return (
-        <div className="restaurant-form-container pt-5" style={{ background: '#f2f2f2', backgroundSize: 'cover', backgroundPosition: 'center', color: '', padding: '20px' }}>
+        <div className="restaurant-form-container pt-5" style={{ background: '#FFBF69', backgroundSize: 'cover', backgroundPosition: 'center', color: '', padding: '20px' }}>
         <div className="mt-4 m-4" >
             <div className="row ">
                 <div className="col col-lg-2">
@@ -124,8 +124,8 @@ export default function AllRestaurants() {
                                 <input type="number" className="form-control" id="distance" name="distance" ref={filterRefs.distance} onChange={handleFilterChange} />
                             </div>
                             <div className='d-flex '>
-                                <button className="btn btn-dark me-2" onClick={handleFilter}>Apply</button>
-                                <button className="btn btn-secondary" onClick={resetFilter}>Reset</button>
+                                <button className="btn me-2"style={{backgroundColor: "#2EC4B6"}} onClick={handleFilter}>Apply</button>
+                                <button className="btn" style={{backgroundColor: "#2EC4B6"}} onClick={resetFilter}>Reset</button>
                             </div>
 
                         </div>

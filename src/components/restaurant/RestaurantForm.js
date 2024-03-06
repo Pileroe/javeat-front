@@ -136,18 +136,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                             onChange={handleChange}
                         />
                     </div>
-                    {/* <div className="mb-3">
-                        <label htmlFor="isOpen" className="form-label">Is Open</label>
-                        <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="isOpen"
-                            name="isOpen"
-                            checked={isOpenChecked}
-                            onChange={handleIsOpenChange}
-                        />
-                    </div> */}
-                    <button type="submit" onClick={handleSubmit} className="btn btn-primary">Update</button>
+                    <button type="submit" onClick={handleSubmit} className="btn" style={{backgroundColor: "#2EC4B6"}}>Update</button>
                 </form>
             ) : (
                 <div>
@@ -175,7 +164,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     {/* <div className="mb-3">
                         <strong>Is Open:</strong> {restaurant.isOpen ? 'Yes' : 'No'}
                     </div> */}
-                    <button onClick={handleToggleEdit} className="btn btn-primary">Edit</button>
+                    <button onClick={handleToggleEdit} className="btn" style={{backgroundColor: "#2EC4B6"}}>Edit</button>
                 </div>
             )}
         </div>
