@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAtom } from 'jotai';
-import { currentUser } from '../../App';
-import Restaurant from './Restaurant';
-import { useParams } from 'react-router-dom';
 
-const MyDishes = () => {
+const MyDishes = (props) => {
     const [dishes, setDishes] = useState([]);
-    const {id}=useParams();
-   
+    
     useEffect(
         ()=>{
-            axios.get(`/dishes/${id}`)
+            axios.get(`/dishes/${props.restaurant.id}`)
             .then((response)=>{
                 setDishes(response.data);
             }).catch((error)=>{
@@ -20,7 +15,7 @@ const MyDishes = () => {
 
             });
         },
-        []
+        [props.flicker]
     );
     return (
         <div>
