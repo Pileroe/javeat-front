@@ -1,9 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import YourComponent from './YourComponent';
 
 export default function Homepage() {
     return (
-        <> <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', color: 'white', padding: '10px',height: '90vh' }}>
+        <> <div className="restaurant-form-container pt-4" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', color: 'white', padding: '10px',height: '90vh' }}>
+            <h1  className='text-black text-center'><strong>I piatti dei ristoranti che ami</strong></h1>
             <div className="container">
                 <div id="carouselExampleDark" className="carousel carousel-light slide" data-bs-ride="carousel">
                     <div className="carousel-indicators">
@@ -14,17 +16,17 @@ export default function Homepage() {
                     <div className="carousel-inner">
                         <div className="carousel-item active">
                             <div className="card">
-                                <img src="/slide_1.png" className="card-img-top" alt="First slide" />
+                                <img src="/carosello1.jpg" className="card-img-top" alt="First slide" />
                             </div>
                         </div>
                         <div className="carousel-item">
                             <div className="card">
-                                <img src="/slide_2.png" className="card-img-top" alt="Second slide" />
+                                <img src="/carosello2.jpg" className="card-img-top" alt="Second slide" />
                             </div>
                         </div>
                         <div className="carousel-item">
                             <div className="card">
-                                <img src="/slide_3.png" className="card-img-top" alt="Third slide" />
+                                <img src="/carosello3.jpg" className="card-img-top" alt="Third slide" />
                             </div>
                         </div>
                     </div>
@@ -36,7 +38,8 @@ export default function Homepage() {
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
                         <span className="visually-hidden">Next</span>
                     </button>
-                </div>
+                </div><br/>
+                {<YourComponent/>}
             </div>
             </div>
         </>

@@ -45,7 +45,7 @@ export default function Restaurant({ restaurant, invertFliker }) {
         <div className="mx-5 mt-5">
             <div className="row">
                 <div className="col-md-9">
-                    <div className="card mb-4 shadow-sm"> {/* Added shadow-sm for a subtle shadow */}
+                    <div className="card mb-4 shadow-sm border-light-subtle"> {/* Added shadow-sm for a subtle shadow */}
                         {/* Image set to cover the entire top area */}
                         <img src={`/static/${restaurant.imgUrl}`} className="card-img-top" alt="Restaurant" style={{ width: "100%", objectFit: "cover", maxHeight: "40vh" }} />
                         <div className="card-body">
@@ -56,14 +56,16 @@ export default function Restaurant({ restaurant, invertFliker }) {
                         </div>
                     </div>
 
-                    <div className="card mb-4 shadow-sm">
-                        <div className="card-body">
+                    <div className="card mb-4 shadow-sm border-light-subtle">
+                        <div className="card-body ">
                             <h3 className="card-title"><strong>Menu</strong></h3>
                             <div className='row'>
                                 {restaurant.menu.map((dish) => (
                                     <div key={dish.id} className="mb-3 col-4">
-                                        <DishDetail dish={dish} />
-                                        {user && Object.keys(user).length > 0 && (<button style={{ backgroundColor: '#2EC4B6', color: '#FFFFFF' }} className="btn mr-2" onClick={() => addToCart(dish)}>Add to Cart</button>)}
+                                        <div className="card mb-3 border-light-subtle">
+                                            <DishDetail dish={dish} />
+                                            {user && Object.keys(user).length > 0 && (<button style={{ backgroundColor: '#FF9F1C', color: '#FFFFFF' }} className="btn mr-2 m-2 mx-2" onClick={() => addToCart(dish)}><strong>Add to Cart</strong></button>)}
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -73,11 +75,12 @@ export default function Restaurant({ restaurant, invertFliker }) {
                 {user && Object.keys(user).length > 0 &&
                     (
                         <div className="col-md-3">
-                            <div className="card shadow-sm" style={{ position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF' }}>
+                            <div className="card shadow-sm border-light-subtle" style={{ position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF' }}>
                                 <div className="card-body">
-                                <div>
-                                <img src="/OIP.jpg" alt="Cart" style={{ width: "30px", marginRight: "10px" }} />
-                                    <h4 className="card-title">Cart</h4></div>
+                                    <div className='d-flex pb-2'>
+                                        <img src="/OIP.jpg" alt="Cart" style={{ width: "30px", marginRight: "10px" }} />
+                                        <h4 className="card-title">Cart</h4>
+                                    </div>
                                     {[...cartItems].map(([dishId, quantity]) => {
                                         const dish = restaurant.menu.find(dish => dish.id === dishId);
                                         return dish && (
@@ -96,7 +99,7 @@ export default function Restaurant({ restaurant, invertFliker }) {
                                     <hr />
                                     <p>Total Price: ${getTotalPrice().toFixed(2)}</p>
                                     {cartItems.size > 0 && (
-                                        <button style={{ backgroundColor: '#2EC4B6', color: '#FFFFFF' }} className="btn btn-block" onClick={proceedToCheckout}>Proceed to Checkout</button>
+                                        <button style={{ backgroundColor: '#2EC4B6', color: '#FFFFFF' }} className="btn btn-block" onClick={proceedToCheckout}><strong>Proceed to Checkout</strong></button>
                                     )}
                                 </div>
                             </div>
@@ -107,24 +110,24 @@ export default function Restaurant({ restaurant, invertFliker }) {
                     (
                         <div className="col-md-3">
                             <div style={{ position: "sticky", top: "30px", zIndex: "1000" }}>
-                            <div className='conteiner-fluid mb-1' >
-                                <img src="/static/2.jpg" className="img-thumbnail  rounded-5" />
-                            </div>
-                            <div className='conteiner-fluid mb-1' >
+                                <div className='conteiner-fluid mb-1' >
+                                    <img src="/static/2.jpg" className="img-thumbnail  rounded-5" />
+                                </div>
+                                <div className='conteiner-fluid mb-1' >
 
-                                <img src="/static/1.jpg" className="img-thumbnail  rounded-5  " />
+                                    <img src="/static/1.jpg" className="img-thumbnail  rounded-5  " />
 
-                            </div>
-                            <div className='conteiner-fluid mb-1' >
+                                </div>
+                                <div className='conteiner-fluid mb-1' >
 
-                                <img src="/static/3.jpg" className="img-thumbnail  rounded-5" />
-                            </div>
+                                    <img src="/static/3.jpg" className="img-thumbnail  rounded-5" />
+                                </div>
                             </div>
                         </div>
                     )
                 }
             </div>
         </div>
-       
+
     );
 }
