@@ -54,10 +54,10 @@ const Register = () => {
   };
 
   return (
-   
-    <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px' }}> 
-        <form onSubmit={handleRegistration}>
-                <h2>Crea un Account</h2>
+    <body style={{ minHeight: '150vh', backgroundImage: "url('/3.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh'}}>
+      <div className="container d-flex justify-content-center align-items-center" >
+        <form onSubmit={handleRegistration}><br/><br/><br/><br/>
+                <h2><strong>Crea un Account</strong></h2>
                 <br/>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -80,12 +80,13 @@ const Register = () => {
                     <input className="form-control" type="number" placeholder="Position Y" value={positionY} onChange={(e) => setPositionY(e.target.value)}/>
                 </div>
                 <div className="form-check form-switch">
-                  <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Sei un ristoratore?</label>
+                  <label className="form-check-label" htmlFor="flexSwitchCheckDefault"><strong>Sei un ristoratore?</strong></label>
                   <input onClick={changeInOwner} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
                 </div>
                 <button onClick={handleRegistration} className="btn btn-primary">Register</button>   
         </form>
-      </div>
+        </div>
+        </body>
   
     
         

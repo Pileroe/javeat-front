@@ -59,9 +59,9 @@ const MyOrders = () => {
                             <p className="card-text">Note: {order.notes}</p>
                             <p className="card-text">Metodo di pagamento: {order.paymentMethod}</p>
                             <p className="card-text">Data di consegna prevista: {DisplayDate(order.expectedArrival)}</p>
-                            <p className="card-text">Prezzo piatti: {order.dishesPrice}</p>
-                            <p className="card-text">Guadagno del rider: {order.riderRevenue}</p>
-                            <p className="card-text">Prezzo totale: {order.totalPrice}</p>
+                            <p className="card-text">Prezzo piatti: {order.dishesPrice.toFixed(2)}</p>
+                            <p className="card-text">Guadagno del rider: {order.riderRevenue.toFixed(2)}</p>
+                            <p className="card-text">Prezzo totale: {order.totalPrice.toFixed(2)}</p>
                             <p className="card-text">Piatti:</p>
                             <ul className="list-group mb-3">
                                 {order.dishes.map(dish => (
