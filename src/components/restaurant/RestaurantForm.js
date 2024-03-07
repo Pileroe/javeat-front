@@ -9,14 +9,15 @@ const RestaurantForm = ({ initialRestaurant }) => {
     const [isOpenChecked, setIsOpenChecked] = useState(false);
     const [user] = useAtom(currentUser);
 
+    console.log(restaurant);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === "foodTypes") {
-            // Converti la stringa di input in un array, dividendo per la virgola
-            const arrayValue = value.split(',').map(item => item.trim()); // Rimuove gli spazi bianchi all'inizio e alla fine di ogni elemento
+            const arrayValue = value.split(',').map(item => item.trim()); 
             setRestaurant({ ...restaurant, [name]: arrayValue });
         } else {
-            // Per tutti gli altri campi, usa il comportamento predefinito
+           
             setRestaurant({ ...restaurant, [name]: value });
         }
     };
@@ -136,6 +137,17 @@ const RestaurantForm = ({ initialRestaurant }) => {
                             onChange={handleChange}
                         />
                     </div>
+                    <div className="mb-3">
+                        <label htmlFor="deliveryPricePerUnit" className="form-label">Delivery Price Per Unit</label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="deliveryPricePerUnit"
+                            name="pricePerUnit"
+                            value={restaurant.deliveryPricePerUnit}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <button type="submit" onClick={handleSubmit} className="btn" style={{backgroundColor: "#2EC4B6"}}>Update</button>
                 </form>
             ) : (
@@ -160,6 +172,9 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     </div>
                     <div className="mb-3">
                         <strong>Max Delivery Distance:</strong> {restaurant.maxDeliveryDistance}
+                    </div>
+                    <div className="mb-3">
+                        <strong>Delivery Price Per Unit:</strong> {restaurant.deliveryPricePerUnit}
                     </div>
                     {/* <div className="mb-3">
                         <strong>Is Open:</strong> {restaurant.isOpen ? 'Yes' : 'No'}

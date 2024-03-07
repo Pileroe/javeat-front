@@ -38,7 +38,7 @@ export default function Restaurant({ restaurant, invertFliker }) {
 
     const proceedToCheckout = () => {
         setOrder({ ...order, dishes: cartItems });
-        invertFliker('PageOrder');
+        invertFliker('Checkout');
     };
 
     return (
@@ -58,12 +58,12 @@ export default function Restaurant({ restaurant, invertFliker }) {
 
                     <div className="card mb-4 shadow-sm">
                         <div className="card-body">
-                            <h3 className="card-title">Menu</h3>
+                            <h3 className="card-title"><strong>Menu</strong></h3>
                             <div className='row'>
                                 {restaurant.menu.map((dish) => (
                                     <div key={dish.id} className="mb-3 col-4">
                                         <DishDetail dish={dish} />
-                                        {user && Object.keys(user).length > 0 && (<button className="btn btn-primary mr-2" onClick={() => addToCart(dish)}>Add to Cart</button>)}
+                                        {user && Object.keys(user).length > 0 && (<button style={{ backgroundColor: '#2EC4B6', color: '#FFFFFF' }} className="btn mr-2" onClick={() => addToCart(dish)}>Add to Cart</button>)}
                                     </div>
                                 ))}
                             </div>
@@ -96,7 +96,7 @@ export default function Restaurant({ restaurant, invertFliker }) {
                                     <hr />
                                     <p>Total Price: ${getTotalPrice()}</p>
                                     {cartItems.size > 0 && (
-                                        <button className="btn btn-success btn-block" onClick={proceedToCheckout}>Proceed to Checkout</button>
+                                        <button style={{ backgroundColor: '#2EC4B6', color: '#FFFFFF' }} className="btn btn-block" onClick={proceedToCheckout}>Proceed to Checkout</button>
                                     )}
                                 </div>
                             </div>
