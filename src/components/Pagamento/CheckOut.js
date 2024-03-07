@@ -9,6 +9,31 @@ const CheckOut = ({ restaurant }) => {
     const [order, setOrder] = useAtom(currentOrder);
     const [editedOrder, setEditedOrder] = useState({ dishes: new Map(), ...order});
     const [dishesDetails, setDishesDetails] = useState([]);
+    const [expected_arrival, setExpected_arrival] = useState('');
+
+    function generateTimeS(closingHour) 
+    {
+        const slots = [];
+        const now = new Date();
+        const closingDate = new Date(now);
+        closingDate.setHours(closingHour, 0, 0, 0); 
+    
+        let slot = new Date(now);
+        slot.setMinutes(Math.ceil(slot.getMinutes() / 15) * 15, 0, 0);
+    
+        while (slot < closingDate) {
+            slots.push(slot.toTimeString().substring(0, 5));
+            slot = new Date(slot.getTime() + 15 * 60 * 1000);
+        }
+    
+        return slots;
+    }
+
+    const handleOrario = (event) =>
+    {
+        setExpected_arrival(event.target.value);
+        setOrder({...order,expected_arrival:event.target.value});
+    }
 
     useEffect(() => {
         const menu = restaurant.menu;
@@ -46,8 +71,12 @@ const CheckOut = ({ restaurant }) => {
             ...editedOrder,
             dishes: mapDishesToObject(editedOrder.dishes),
         };
+
+    
+        
     
         try {
+            console.log(orderToSubmit);
             const response = await axios.post('/deliveries', orderToSubmit);
             if (response.status === 200) {
                 navigate('/my-orders');
@@ -60,9 +89,19 @@ const CheckOut = ({ restaurant }) => {
     };
 
     return (
+        <div className="restaurant-form-container pt-5" style={{ backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px' }}>
+
         <div className='container'>
             <h2>Checkout</h2>
             <form onSubmit={handleSubmit}>
+            <label>Seleziona l'orario di consegna</label>
+                        <br/>
+                        <select className="form-select" id="orario" value={expected_arrival} onChange={handleOrario}>
+                            <option value="" disabled>Orari di consegna</option>
+                                    {generateTimeS(restaurant.closingHour).map((time, index) => (
+                            <option key={index} value={time}>{time}</option>
+                            ))}
+                        </select>
                 <div className="mb-3">
                     <label>Note dell'ordine</label>
                     <textarea className="form-control" name="notes" value={editedOrder.notes} onChange={handleChange}></textarea>
@@ -77,7 +116,7 @@ const CheckOut = ({ restaurant }) => {
                 </div>
                 {dishesDetails.map((dish, index) => (
                     <div key={index} className="mb-3">
-                        <label>{dish.name} - {dish.price}€ x {dish.quantity}</label>
+                        <label className='text-black'>{dish.name} - {dish.price}€ x {dish.quantity}</label>
                         <input
                             type="number"
                             className="form-control"
@@ -88,6 +127,7 @@ const CheckOut = ({ restaurant }) => {
                 ))}
                 <button type="submit" className="btn btn-success">Invia Ordine</button>
             </form>
+        </div>
         </div>
     );
 };

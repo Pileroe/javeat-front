@@ -44,8 +44,11 @@ const MyOrders = () => {
     };
 
     return (
+        <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url(/3.jpg)", backgroundSize: 'cover', color: 'white', padding: '10px', height: '90vh' }}>
+
         <div className="container mt-5">
-            <h2>My Orders</h2>
+            <h2 className='text-black'><strong>My Orders</strong></h2>
+            <br/>
             <div className="row d-flex flex-wrap">
                 {orders.length > 0 ? (
                     orders.map(order => (
@@ -73,11 +76,13 @@ const MyOrders = () => {
                         </div>
                     </div>
         </div>
+        
     ))
         ) : (
     <p>Nessun ordine trovato.</p>
 )}
     </div >
+</div >
 </div >
     );
 };

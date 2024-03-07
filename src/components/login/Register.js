@@ -46,8 +46,7 @@ const Register = () => {
 
   return (
    
-    <div className="container d-flex justify-content-center align-items-center vh-10 w-50"style={{ border: "1px solid #ddd", padding: "40px" }}>
-            
+    <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px' }}> 
         <form onSubmit={handleRegistration}>
                 <h2>Crea un Account</h2>
                 <br/>
@@ -77,7 +76,9 @@ const Register = () => {
                 </div>
                 <button onClick={handleRegistration} className="btn btn-primary">Register</button>   
         </form>
-    </div>
+      </div>
+  
+    
         
   );
 };
