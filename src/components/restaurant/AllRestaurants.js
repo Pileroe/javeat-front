@@ -104,7 +104,7 @@ export default function AllRestaurants() {
             <div className="m-4" >
                 <div className="row ">
                     <div className="col col-lg-2">
-                        <div className="card px-2 py-3 border light-subtle" style={{ position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF' }}>
+                        <div className="card px-2 py-3 pb-0 border light-subtle" style={{ position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF' }}>
                             <div className="card-body border border-0">
                                 <h5 className="card-title">Filter</h5>
                                 <div className="mb-3">
@@ -129,8 +129,8 @@ export default function AllRestaurants() {
                                         <input type="number" className="form-control" id="distance" name="distance" ref={filterRefs.distance} onChange={handleFilterChange} />
                                     </div>)}
                                 <div className='d-flex '>
-                                    <button className="btn me-2" style={{ backgroundColor: "#2EC4B6" }} onClick={handleFilter}>Apply</button>
-                                    <button className="btn" style={{ backgroundColor: "#2EC4B6" }} onClick={resetFilter}>Reset</button>
+                                    <button className="btn me-2 px-5" style={{ backgroundColor: "#2EC4B6" }} onClick={handleFilter}>Apply</button>
+                                    <button className="btn" style={{ backgroundColor: "#FF9F1C" }} onClick={resetFilter}>Reset</button>
                                 </div>
 
                             </div>
