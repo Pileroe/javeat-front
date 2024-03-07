@@ -10,6 +10,17 @@ const Register = () => {
   const [positionY,setPositionY] = useState(0);
   const [owner,setOwner] = useState(false);
 
+  const [dat, setData] = useState(
+    {
+        mail,
+        password,
+        phone,
+        positionX: Number(positionX),
+        positionY: Number(positionY),
+        owner
+    }
+  )
+
   let navigate = useNavigate();
 
   function changeInOwner() 
@@ -22,8 +33,6 @@ const Register = () => {
     
   }
   
-  
-
   const handleRegistration = async (e) => 
   {
     e.preventDefault();
@@ -33,8 +42,8 @@ const Register = () => {
         mail,
         password,
         phone,
-        positionX,
-        positionY,
+        positionX: Number(positionX),
+        positionY: Number(positionY),
         owner
       });
         console.log('Registration successful', response.data);
