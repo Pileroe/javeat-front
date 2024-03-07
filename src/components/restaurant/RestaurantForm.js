@@ -9,8 +9,6 @@ const RestaurantForm = ({ initialRestaurant }) => {
     const [isOpenChecked, setIsOpenChecked] = useState(false);
     const [user] = useAtom(currentUser);
 
-    console.log(restaurant);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === "foodTypes") {
@@ -26,6 +24,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
         e.preventDefault();
         try {
             const updatedRestaurant = { ...restaurant, id: user.id };
+            console.log(updatedRestaurant);
             const response = await axios.get(`/restaurants/${restaurant.id}`, updatedRestaurant);
             console.log('Restaurant updated successfully', response.data);
             setIsEditing(false);
@@ -49,10 +48,10 @@ const RestaurantForm = ({ initialRestaurant }) => {
         setIsEditing(!isEditing);
     };
 
-    const handleIsOpenChange = (e) => {
-        setIsOpenChecked(e.target.checked);
-        setRestaurant({ ...restaurant, isOpen: e.target.checked });
-    };
+    // const handleIsOpenChange = (e) => {
+    //     setIsOpenChecked(e.target.checked);
+    //     setRestaurant({ ...restaurant, isOpen: e.target.checked });
+    // };
 
     return (
 
@@ -143,7 +142,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                             type="number"
                             className="form-control"
                             id="deliveryPricePerUnit"
-                            name="pricePerUnit"
+                            name="deliveryPricePerUnit"
                             value={restaurant.deliveryPricePerUnit}
                             onChange={handleChange}
                         />
