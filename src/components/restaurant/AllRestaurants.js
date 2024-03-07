@@ -130,7 +130,7 @@ export default function AllRestaurants() {
                                     </div>)}
                                 <div className='d-flex '>
                                     <button className="btn me-2 px-5" style={{ backgroundColor: "#2EC4B6" }} onClick={handleFilter}>Apply</button>
-                                    <button className="btn" style={{ backgroundColor: "#FF9F1C" }} onClick={resetFilter}>Reset</button>
+                                    <button className="btn px-3" style={{ backgroundColor: "#FF9F1C" }} onClick={resetFilter}>Reset</button>
                                 </div>
 
                             </div>
