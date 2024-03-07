@@ -99,7 +99,7 @@ export default function AllRestaurants() {
 
     return (
         <div style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px', height:"90vh", overflowY: 'auto'  }}>
-        <div className="mt-4 m-4" >
+        <div className="m-4" >
             <div className="row ">
                 <div className="col col-lg-2">
                     <div className="card px-2 py-3 border border-0" style={{position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF'}}>
@@ -132,8 +132,8 @@ export default function AllRestaurants() {
                     </div>
                 </div>
                 <div className="col col-lg-10 px-5">
-                <div className="mx-4 mb-4" style={{ textAlign: 'center' }}>
-                    <h1 style={{ fontWeight: 'bold' }}>I più amati della tua zona</h1>
+                <div className="mx-4 mb-4" style={{ }}>
+                    <h1 style={{ fontWeight: 'bold', color:"#2EC4B6" }}>I più amati della tua zona</h1>
                 </div>
                     <div className="row">
                         <div className='conteiner-fluid mb-5 col-4' >
