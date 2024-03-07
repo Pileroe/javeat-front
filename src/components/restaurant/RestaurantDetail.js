@@ -19,7 +19,7 @@ export default function RestaurantDetail() {
             });
     }, [id]);
 
-    function invertFliker(page){
+    function invertFliker(page) {
         setFliker(page);
     }
 
@@ -29,10 +29,15 @@ export default function RestaurantDetail() {
     }
 
     return (
-        <div style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px', height:"90vh", overflowY: 'auto'  }}>
-            {fliker=='Restaurant' &&<Restaurant restaurant={restaurant} invertFliker={invertFliker}/>}
-            {fliker=='Checkout' && <CheckOut restaurant={restaurant}/>}
-        </div>
+        <>
+            {fliker == 'Restaurant' && <div style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px', height: "90vh", overflowY: 'auto' }}>
+                <Restaurant restaurant={restaurant} invertFliker={invertFliker} /></div>}
+
+            {fliker == 'Checkout' && <div style={{ backgroundImage: "url(/3.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px', height: "90vh", overflowY: 'auto' }}>
+                <CheckOut restaurant={restaurant} />
+            </div>}
+
+        </>
     );
 
 

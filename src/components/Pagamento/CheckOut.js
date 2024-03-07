@@ -89,12 +89,12 @@ const CheckOut = ({ restaurant }) => {
     };
 
     return (
-        <div className="restaurant-form-container pt-5" style={{ backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px' }}>
+        <div className="restaurant-form-container pt-5" style={{  backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px' }}>
 
         <div className='container'>
-            <h2>Checkout</h2>
+            <h1 className='text-black'>Checkout</h1>
             <form onSubmit={handleSubmit}>
-            <label>Seleziona l'orario di consegna</label>
+            <label className='text-black'><h4>Seleziona l'orario di consegna</h4></label>
                         <br/>
                         <select className="form-select" id="orario" value={expected_arrival} onChange={handleOrario}>
                             <option value="" disabled>Orari di consegna</option>
@@ -103,11 +103,11 @@ const CheckOut = ({ restaurant }) => {
                             ))}
                         </select>
                 <div className="mb-3">
-                    <label>Note dell'ordine</label>
+                    <label className='text-black'><h4>Note dell'ordine</h4></label>
                     <textarea className="form-control" name="notes" value={editedOrder.notes} onChange={handleChange}></textarea>
                 </div>
                 <div className="mb-3">
-                    <label>Metodo di pagamento</label>
+                    <label className='text-black'><h4>Metodo di pagamento</h4></label>
                     <select className="form-control" name="paymentMethod" value={editedOrder.paymentMethod} onChange={handleChange}>
                         <option value="card">Carta di Credito/Debito</option>
                         <option value="paypal">PayPal</option>
@@ -116,7 +116,7 @@ const CheckOut = ({ restaurant }) => {
                 </div>
                 {dishesDetails.map((dish, index) => (
                     <div key={index} className="mb-3">
-                        <label className='text-black'>{dish.name} - {dish.price}€ x {dish.quantity}</label>
+                        <label className='text-black'><h4>{dish.name} - {dish.price}€ x {dish.quantity}</h4></label>
                         <input
                             type="number"
                             className="form-control"
@@ -125,7 +125,7 @@ const CheckOut = ({ restaurant }) => {
                         />
                     </div>
                 ))}
-                <button type="submit" className="btn btn-success">Invia Ordine</button>
+                <button type="submit" className="btn ">Invia Ordine</button>
             </form>
         </div>
         </div>

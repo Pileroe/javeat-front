@@ -98,12 +98,12 @@ export default function AllRestaurants() {
     };
 
     return (
-        <div className="restaurant-form-container pt-5" style={{ background: '#FFBF69', backgroundSize: 'cover', backgroundPosition: 'center', color: '', padding: '20px' }}>
+        <div style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px', height:"90vh", overflowY: 'auto'  }}>
         <div className="mt-4 m-4" >
             <div className="row ">
                 <div className="col col-lg-2">
                     <div className="card px-2 py-3 border border-0" style={{position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF'}}>
-                        <div className="card-body">
+                        <div className="card-body border border-light-subtle">
                             <h5 className="card-title">Filter</h5>
                             <div className="mb-3">
                                 <label className="form-label">Food Types</label>
@@ -137,16 +137,16 @@ export default function AllRestaurants() {
                 </div>
                     <div className="row">
                         <div className='conteiner-fluid mb-5 col-4' >
-                            <img src="/static/2.jpg" className="img-thumbnail  rounded-5" />
+                            <img src="/static/2.jpg" className="img-thumbnail border border-0  rounded-5" />
                         </div>
                         <div className='conteiner-fluid mb-5 col-4' >
 
-                            <img src="/static/1.jpg" className="img-thumbnail  rounded-5  " />
+                            <img src="/static/1.jpg" className="img-thumbnail border border-0  rounded-5  " />
 
                         </div>
                         <div className='conteiner-fluid mb-5 col-4' >
 
-                            <img src="/static/3.jpg" className="img-thumbnail  rounded-5" />
+                            <img src="/static/3.jpg" className="img-thumbnail border border-0 rounded-5" />
                         </div>
                     </div>
 
