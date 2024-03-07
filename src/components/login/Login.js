@@ -23,10 +23,10 @@ export default function Login() {
             .then(resp => {
                 if (resp.data) {
                     setUser(resp.data);
-                    if(resp.data.owner)
-                    
+                    if (resp.data.owner)
+
                         navigate("/my-restaurant");
-                    
+
                     else
                         navigate("/allrestaurants");
                 } else {
@@ -46,22 +46,23 @@ export default function Login() {
     }
 
     return (
-        <body style={{ minHeight: '150vh', backgroundImage: "url('/3.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh'}}>
-            <br/><br/><br/><br/><br/><br/>
+        <body style={{ minHeight: '150vh', backgroundImage: "url('/3.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
+            <br /><br /><br /><br /><br /><br />
             <div className="container d-flex justify-content-center align-items-center  ">
                 <form>
-                    <h2><strong>Accedi</strong></h2>
-                    <br/>
-                    <div className="mb-">
+                    <h2 className="d-flex justify-content-center"><h1><strong>Accedi</strong></h1></h2>
+                    <div className="">
                         <label htmlFor="exampleInputEmail1" className="form-label"><strong>Email address</strong></label>
-                        <input type="email" className="form-control" ref={mailIn} placeholder="Email"/>
+                        <input type="email" className="form-control" ref={mailIn} placeholder="Email" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleInputPassword1" className="form-label"><strong>Password</strong></label>
-                        <input type="password" className="form-control" id="exampleInputPassword1" ref={passIn} placeholder="Password"/>
+                        <input type="password" className="form-control" id="exampleInputPassword1" ref={passIn} placeholder="Password" />
                     </div>
-                    <button type="button" onClick={handleLogin} className="btn btn-warning" style={{ backgroundColor: "#2EC4B6"}}>Login</button>
-                    <Link to="/user/register" ><button type="button" style={{backgroundColor: "#2EC4B6"}} className="btn mx-3" >Registrati</button></Link>
+                    <div className="d-flex justify-content-center">
+                        <button type="button" onClick={handleLogin} className="btn btn-warning px-5 me-2" style={{ backgroundColor: "#2EC4B6" , color:"white"}}>Login</button>
+                        <Link to="/user/register" ><button type="button" style={{ backgroundColor: "#FF9F1C", color:"white" }} className="btn ">Registrati</button></Link>
+                    </div>
                 </form>
             </div>
             {showErrorPopup && (
@@ -75,7 +76,7 @@ export default function Login() {
                                 {errorMessage}
                             </div>
                             <div className="modal-footer">
-                                <button type="button" style={{backgroundColor: "#2EC4B6"}} className="btn" onClick={handleCloseErrorPopup}>Chiudi</button>
+                                <button type="button" style={{ backgroundColor: "#2EC4B6" }} className="btn" onClick={handleCloseErrorPopup}>Chiudi</button>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@ import YourComponent from './YourComponent';
 
 export default function Homepage() {
     return (
-        <> <div className="restaurant-form-container pt-4" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', color: 'white', padding: '10px',height: '90vh' }}>
+        <> <div className="restaurant-form-container pt-4" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', color: 'white', padding: '10px',minHeight: '90vh' }}>
             <h1  className='text-black text-center'><strong>I piatti dei ristoranti che ami</strong></h1>
             <div className="container">
                 <div id="carouselExampleDark" className="carousel carousel-light slide" data-bs-ride="carousel">
