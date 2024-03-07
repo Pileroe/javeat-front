@@ -4,14 +4,14 @@ import YourComponent from './YourComponent';
 
 export default function Homepage() {
     return (
-        <> <div className="restaurant-form-container pt-4" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', color: 'white', padding: '10px',minHeight: '90vh' }}>
-            <h1  className='text-black text-center'><strong>I piatti dei ristoranti che ami</strong></h1>
+        <> <div className="restaurant-form-container pt-2" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', color: 'white', padding: '10px', minHeight: '90vh' }}>
+            <h1 className='text-black text-center'><strong>I piatti dei ristoranti che ami</strong></h1>
             <div className="container">
                 <div id="carouselExampleDark" className="carousel carousel-light slide" data-bs-ride="carousel">
                     <div className="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1" style={{backgroundColor: 'white', border: '1px solid #ddd'}}></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" style={{backgroundColor: 'white', border: '1px solid #ddd'}}></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" style={{backgroundColor: 'white', border: '1px solid #ddd'}}></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1" style={{ backgroundColor: 'white', border: '1px solid #ddd' }}></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" style={{ backgroundColor: 'white', border: '1px solid #ddd' }}></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" style={{ backgroundColor: 'white', border: '1px solid #ddd' }}></button>
                     </div>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
@@ -38,10 +38,13 @@ export default function Homepage() {
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
                         <span className="visually-hidden">Next</span>
                     </button>
-                </div><br/>
-                {<YourComponent/>}
+                </div>
+                <div className="pt-3 pb-3">
+                {<YourComponent  />}
+                </div>
+                
             </div>
-            </div>
+        </div>
         </>
     );
 }
