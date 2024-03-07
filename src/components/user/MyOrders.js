@@ -22,13 +22,13 @@ const MyOrders = () => {
         }
     }, [user]);
 
-    function DisplayDate(dateString ) {
+    function DisplayDate(dateString) {
         const [date, time] = dateString.split('T');
-      
+
         return (
             `${date} /${time}`
         );
-      }
+    }
 
     const cancelOrder = async (orderId) => {
         try {
@@ -44,41 +44,46 @@ const MyOrders = () => {
     };
 
     return (
-        <div className="container">
-            <h2>My Orders</h2>
-            <div className="row">
+        <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url(/3.jpg)", backgroundSize: 'cover', color: 'white', padding: '10px', height: '90vh' }}>
+
+        <div className="container mt-5">
+            <h2 className='text-black'><strong>My Orders</strong></h2>
+            <br/>
+            <div className="row d-flex flex-wrap">
                 {orders.length > 0 ? (
                     orders.map(order => (
-                        <div key={order.orderId} className="col-md-4">
-                            <div className="card mb-3">
-                                <div className="card-body">
-                                    <h5 className="card-title">Ordine #{order.orderId}</h5>
-                                    <p className="card-text">Note: {order.notes}</p>
-                                    <p className="card-text">Metodo di pagamento: {order.paymentMethod}</p>
-                                    <p className="card-text">Data di consegna prevista: {DisplayDate(order.expectedArrival)}</p>
-                                    <p className="card-text">Prezzo piatti: {order.dishesPrice}</p>
-                                    <p className="card-text">Guadagno del rider: {order.riderRevenue}</p>
-                                    <p className="card-text">Prezzo totale: {order.totalPrice}</p>
-                                    <p className="card-text">Piatti:</p>
-                                    <ul className="list-group">
-                                        {order.dishes.map(dish => (
-                                            <li key={dish.id} className="list-group-item">
-                                                {dish.name} - {dish.price}€ x {dish.quantity}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <div className="mt-3">
-                                        <button onClick={() => cancelOrder(order.orderId)} className="btn btn-danger me-2">Annulla Ordine</button>
-                                    </div>
-                                </div>
+                        < div key = { order.orderId } className = "col-md-4 d-flex align-items-stretch" >
+                        < div className = "card mb-3 w-100 d-flex flex-column" >
+                        <div className="card-body d-flex flex-column">
+                            <h5 className="card-title">Ordine #{order.orderId}</h5>
+                            <p className="card-text">Note: {order.notes}</p>
+                            <p className="card-text">Metodo di pagamento: {order.paymentMethod}</p>
+                            <p className="card-text">Data di consegna prevista: {DisplayDate(order.expectedArrival)}</p>
+                            <p className="card-text">Prezzo piatti: {order.dishesPrice.toFixed(2)}</p>
+                            <p className="card-text">Guadagno del rider: {order.riderRevenue.toFixed(2)}</p>
+                            <p className="card-text">Prezzo totale: {order.totalPrice.toFixed(2)}</p>
+                            <p className="card-text">Piatti:</p>
+                            <ul className="list-group mb-3">
+                                {order.dishes.map(dish => (
+                                    <li key={dish.id} className="list-group-item">
+                                        {dish.name} - {dish.price}€ x {dish.quantity}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="mt-auto">
+                                <button onClick={() => cancelOrder(order.orderId)} className="btn btn-danger me-2">Annulla Ordine</button>
                             </div>
                         </div>
-                    ))
-                ) : (
-                    <p>Nessun ordine trovato.</p>
-                )}
-            </div>
+                    </div>
         </div>
+        
+    ))
+        ) : (
+    <p>Nessun ordine trovato.</p>
+)}
+    </div >
+</div >
+</div >
     );
 };
 

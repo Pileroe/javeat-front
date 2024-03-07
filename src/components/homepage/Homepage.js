@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Homepage() {
     return (
-        <>
-            <div className="container mt-5">
-                <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">
+        <> <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url(/1back.jpg)", backgroundSize: 'cover', color: 'white', padding: '10px',height: '90vh' }}>
+            <div className="container">
+                <div id="carouselExampleDark" className="carousel carousel-light slide" data-bs-ride="carousel">
                     <div className="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1" style={{backgroundColor: 'white', border: '1px solid #ddd'}}></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" style={{backgroundColor: 'white', border: '1px solid #ddd'}}></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" style={{backgroundColor: 'white', border: '1px solid #ddd'}}></button>
                     </div>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
@@ -37,6 +37,7 @@ export default function Homepage() {
                         <span className="visually-hidden">Next</span>
                     </button>
                 </div>
+            </div>
             </div>
         </>
     );

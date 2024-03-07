@@ -1,14 +1,3 @@
-.bottoneNav:hover
-{ 
-    background-color: #e8680c;
-    
-}
-
-.bottoneNav
-{ 
-    background-color: #f59300;
-    
-}
 
 .navbar-brand-container {
     display: flex;

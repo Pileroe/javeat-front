@@ -10,6 +10,17 @@ const Register = () => {
   const [positionY,setPositionY] = useState(0);
   const [owner,setOwner] = useState(false);
 
+  const [dat, setData] = useState(
+    {
+        mail,
+        password,
+        phone,
+        positionX: Number(positionX),
+        positionY: Number(positionY),
+        owner
+    }
+  )
+
   let navigate = useNavigate();
 
   function changeInOwner() 
@@ -22,8 +33,6 @@ const Register = () => {
     
   }
   
-  
-
   const handleRegistration = async (e) => 
   {
     e.preventDefault();
@@ -33,8 +42,8 @@ const Register = () => {
         mail,
         password,
         phone,
-        positionX,
-        positionY,
+        positionX: Number(positionX),
+        positionY: Number(positionY),
         owner
       });
         console.log('Registration successful', response.data);
@@ -45,11 +54,10 @@ const Register = () => {
   };
 
   return (
-   
-    <div className="container d-flex justify-content-center align-items-center vh-10 w-50"style={{ border: "1px solid #ddd", padding: "40px" }}>
-            
-        <form onSubmit={handleRegistration}>
-                <h2>Crea un Account</h2>
+    <body style={{ minHeight: '150vh', backgroundImage: "url('/3.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh'}}>
+      <div className="container d-flex justify-content-center align-items-center" >
+        <form onSubmit={handleRegistration}><br/><br/><br/><br/>
+                <h2><strong>Crea un Account</strong></h2>
                 <br/>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -72,12 +80,15 @@ const Register = () => {
                     <input className="form-control" type="number" placeholder="Position Y" value={positionY} onChange={(e) => setPositionY(e.target.value)}/>
                 </div>
                 <div className="form-check form-switch">
-                  <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Sei un ristoratore?</label>
+                  <label className="form-check-label" htmlFor="flexSwitchCheckDefault"><strong>Sei un ristoratore?</strong></label>
                   <input onClick={changeInOwner} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
                 </div>
-                <button onClick={handleRegistration} className="btn btn-primary">Register</button>   
+                <button onClick={handleRegistration} style={{backgroundColor: "#2EC4B6"}} className="btn">Register</button>   
         </form>
-    </div>
+        </div>
+        </body>
+  
+    
         
   );
 };

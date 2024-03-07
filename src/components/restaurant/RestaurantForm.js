@@ -12,11 +12,10 @@ const RestaurantForm = ({ initialRestaurant }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === "foodTypes") {
-            // Converti la stringa di input in un array, dividendo per la virgola
-            const arrayValue = value.split(',').map(item => item.trim()); // Rimuove gli spazi bianchi all'inizio e alla fine di ogni elemento
+            const arrayValue = value.split(',').map(item => item.trim()); 
             setRestaurant({ ...restaurant, [name]: arrayValue });
         } else {
-            // Per tutti gli altri campi, usa il comportamento predefinito
+           
             setRestaurant({ ...restaurant, [name]: value });
         }
     };
@@ -25,6 +24,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
         e.preventDefault();
         try {
             const updatedRestaurant = { ...restaurant, id: user.id };
+            console.log(updatedRestaurant);
             const response = await axios.get(`/restaurants/${restaurant.id}`, updatedRestaurant);
             console.log('Restaurant updated successfully', response.data);
             setIsEditing(false);
@@ -48,13 +48,14 @@ const RestaurantForm = ({ initialRestaurant }) => {
         setIsEditing(!isEditing);
     };
 
-    const handleIsOpenChange = (e) => {
-        setIsOpenChecked(e.target.checked);
-        setRestaurant({ ...restaurant, isOpen: e.target.checked });
-    };
+    // const handleIsOpenChange = (e) => {
+    //     setIsOpenChecked(e.target.checked);
+    //     setRestaurant({ ...restaurant, isOpen: e.target.checked });
+    // };
 
     return (
-        <div className="container mb-4">
+
+        <div>
             <h2>{isEditing ? 'Edit Restaurant' : 'Restaurant Details'}</h2>
             {isEditing ? (
                 <form onSubmit={useEffect}>
@@ -72,7 +73,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     <div className="mb-3">
                         <label htmlFor="openingHour" className="form-label">Opening Hour</label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="openingHour"
                             name="openingHour"
@@ -83,7 +84,7 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     <div className="mb-3">
                         <label htmlFor="closingHour" className="form-label">Closing Hour</label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="closingHour"
                             name="closingHour"
@@ -135,18 +136,18 @@ const RestaurantForm = ({ initialRestaurant }) => {
                             onChange={handleChange}
                         />
                     </div>
-                    {/* <div className="mb-3">
-                        <label htmlFor="isOpen" className="form-label">Is Open</label>
+                    <div className="mb-3">
+                        <label htmlFor="deliveryPricePerUnit" className="form-label">Delivery Price Per Unit</label>
                         <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="isOpen"
-                            name="isOpen"
-                            checked={isOpenChecked}
-                            onChange={handleIsOpenChange}
+                            type="number"
+                            className="form-control"
+                            id="deliveryPricePerUnit"
+                            name="deliveryPricePerUnit"
+                            value={restaurant.deliveryPricePerUnit}
+                            onChange={handleChange}
                         />
-                    </div> */}
-                    <button type="submit" onClick={handleSubmit} className="btn btn-primary">Update</button>
+                    </div>
+                    <button type="submit" onClick={handleSubmit} className="btn" style={{backgroundColor: "#2EC4B6"}}>Update</button>
                 </form>
             ) : (
                 <div>
@@ -171,13 +172,17 @@ const RestaurantForm = ({ initialRestaurant }) => {
                     <div className="mb-3">
                         <strong>Max Delivery Distance:</strong> {restaurant.maxDeliveryDistance}
                     </div>
+                    <div className="mb-3">
+                        <strong>Delivery Price Per Unit:</strong> {restaurant.deliveryPricePerUnit}
+                    </div>
                     {/* <div className="mb-3">
                         <strong>Is Open:</strong> {restaurant.isOpen ? 'Yes' : 'No'}
                     </div> */}
-                    <button onClick={handleToggleEdit} className="btn btn-primary">Edit</button>
+                    <button onClick={handleToggleEdit} className="btn" style={{backgroundColor: "#2EC4B6"}}>Edit</button>
                 </div>
             )}
         </div>
+        
     );
 
 

@@ -3,7 +3,7 @@ import React from 'react';
 export default function Cart({ items }) {
     return (
         <div className="card">
-            <div className="card-body">
+            <div className="card-body d-flex align-items-center">
                 <h4 className="card-title">Cart</h4>
                 <ul className="list-group">
                     {items.map((item, index) => (

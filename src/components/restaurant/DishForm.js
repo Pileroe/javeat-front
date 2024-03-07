@@ -46,6 +46,7 @@ const DishForm = (props) => {
 
     return (
         <form className="mt-4" onSubmit={handleSubmit}>
+          <h3 className="p-3">New Dish</h3>
           <div className="mt-4" style={{ padding: '20px' }}>
             <div className="mb-3">
               <label className="form-label"><strong>Name</strong></label>
@@ -90,7 +91,7 @@ const DishForm = (props) => {
                 value={dish.ingredients.join('\n')}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">Invia</button>
+            <button type="submit" className="btn" style={{backgroundColor: "#2EC4B6"}}>Invia</button>
           </div>
         </form>
       );

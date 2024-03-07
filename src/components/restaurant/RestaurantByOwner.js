@@ -9,7 +9,7 @@ import MyDishes from './MyDishes';
 const RestaurantByOwner = () => {
     const [user] = useAtom(currentUser);
     const [restaurant, setRestaurant] = useState(null);
-    const [flicker,setFlicker]= useState(false);
+    const [flicker, setFlicker] = useState(false);
 
     useEffect(() => {
         axios.get(`/restaurantowner/${user.id}`)
@@ -21,32 +21,38 @@ const RestaurantByOwner = () => {
             });
     }, [user]);
 
-    function invertFlicker(){
+    function invertFlicker() {
         setFlicker(!flicker);
     }
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-6">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title"></h5>
-                            {restaurant && <RestaurantForm initialRestaurant={restaurant} />}
+        <div className="restaurant-form-container pt-5" style={{ backgroundImage: "url(/3.jpg)", backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', padding: '20px' }}>
+
+            <div className="container my-3">
+                <div className="row">
+                    <div className="col-6 d-flex">
+                        <div className="card flex-fill">
+                            <div className="card-body">
+                                <h5 className="card-title"></h5>
+                                {restaurant && <RestaurantForm initialRestaurant={restaurant} />}
+                            </div>
                         </div>
                     </div>
-                    <div className="card mt-5">
-                        {restaurant && <DishForm invertFlicker={invertFlicker}/>}
-                    </div>
-                </div>
-                
-                <div className="col-6">
-                    <div className="card">
-                        {restaurant && <MyDishes restaurant={restaurant} flicker={flicker} />}
+                    <div className="col-6 d-flex">
+                        <div className="card flex-fill">
+                            {restaurant && <DishForm invertFlicker={invertFlicker} />}
+                        </div>
                     </div>
                 </div>
             </div>
+            <div className="container">
+                <div className="card">
+                    {restaurant && <MyDishes restaurant={restaurant} flicker={flicker} />}
+                </div>
+            </div>
+
         </div>
+
     );
 };
 

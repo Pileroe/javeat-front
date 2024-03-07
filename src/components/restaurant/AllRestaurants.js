@@ -4,10 +4,10 @@ import RestaurantCard from './RestaurantCard';
 import { useAtom } from "jotai";
 import { currentUser } from "../../App";
 
-
 export default function AllRestaurants() {
     const [user, setUser] = useAtom(currentUser);
     const [restaurants, setRestaurants] = useState([]);
+    const [foodTypes, setFoodTypes] = useState([]);
     const [filters, setFilters] = useState({
         foodTypes: [],
         distance: 1000,
@@ -20,6 +20,15 @@ export default function AllRestaurants() {
     };
 
     useEffect(() => {
+
+        axios.get('/foodtypes')
+        .then(response => {
+            setFoodTypes(response.data);
+        })
+        .catch(error => {
+            console.error('Error fetching foodtypes:', error);
+        });
+
         axios.get('/allrestaurants')
             .then(response => {
                 setRestaurants(response.data);
@@ -89,17 +98,17 @@ export default function AllRestaurants() {
     };
 
     return (
-
+        <div className="restaurant-form-container pt-5" style={{ background: '#FFBF69', backgroundSize: 'cover', backgroundPosition: 'center', color: '', padding: '20px' }}>
         <div className="mt-4 m-4" >
             <div className="row ">
                 <div className="col col-lg-2">
-                    <div className="card px-2 py-3">
+                    <div className="card px-2 py-3 border border-0" style={{position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF'}}>
                         <div className="card-body">
                             <h5 className="card-title">Filter</h5>
                             <div className="mb-3">
                                 <label className="form-label">Food Types</label>
                                 <div>
-                                    {['pizza', 'hamburger', 'sushi', 'barbecue', 'vegetarian'].map((type, index) => (
+                                    {foodTypes.map((type, index) => (
 
                                         <div key={index} className="form-check">
                                             <input className="form-check-input" type="checkbox" id={type} name="foodTypes" value={type} checked={filters.foodTypes.includes(type)} onChange={handleFilterChange} />
@@ -115,30 +124,35 @@ export default function AllRestaurants() {
                                 <input type="number" className="form-control" id="distance" name="distance" ref={filterRefs.distance} onChange={handleFilterChange} />
                             </div>
                             <div className='d-flex '>
-                                <button className="btn btn-dark me-2" onClick={handleFilter}>Apply</button>
-                                <button className="btn btn-secondary" onClick={resetFilter}>Reset</button>
+                                <button className="btn me-2"style={{backgroundColor: "#2EC4B6"}} onClick={handleFilter}>Apply</button>
+                                <button className="btn" style={{backgroundColor: "#2EC4B6"}} onClick={resetFilter}>Reset</button>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                <div className="col col-lg-10 ps-4">
-                    <div className="mx-4 mb-4"><h1>I più amati della tua zona</h1></div>
-                    <div className="row pe-5">
+                <div className="col col-lg-10 px-5">
+                <div className="mx-4 mb-4" style={{ textAlign: 'center' }}>
+                    <h1 style={{ fontWeight: 'bold' }}>I più amati della tua zona</h1>
+                </div>
+                    <div className="row">
                         <div className='conteiner-fluid mb-5 col-4' >
-                            <img src="/static/2.jpg" className="img-thumbnail m-4 rounded-5"/>
+                            <img src="/static/2.jpg" className="img-thumbnail  rounded-5" />
                         </div>
                         <div className='conteiner-fluid mb-5 col-4' >
-                          
-                             <img src="/static/1.jpg" className="img-thumbnail m-4 rounded-5  "  />
-                           
+
+                            <img src="/static/1.jpg" className="img-thumbnail  rounded-5  " />
+
                         </div>
                         <div className='conteiner-fluid mb-5 col-4' >
-                          
-                            <img src="/static/3.jpg" className="img-thumbnail m-4 rounded-5"  />
+
+                            <img src="/static/3.jpg" className="img-thumbnail  rounded-5" />
                         </div>
+                    </div>
+
+                    <div className="row px-1">
                         {restaurants.map(restaurant => (
-                            <div className="col col-md-6 col-lg-3 mb-4" key={restaurant.id}>
+                            <div className="col col-md-6 col-lg-3 px-4 pb-3" key={restaurant.id}>
                                 <RestaurantCard restaurant={restaurant} />
                             </div>
                         ))}
@@ -146,6 +160,7 @@ export default function AllRestaurants() {
                 </div>
             </div>
         </div>
+    </div>
     );
 }
 
