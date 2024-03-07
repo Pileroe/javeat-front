@@ -33,21 +33,21 @@ const Navbar = () => {
                     ) : (
                         <>
                             <Link className="nav-link text-white fst-italic fw-semibold fs-5 " to="/my-restaurant">My Restaurant</Link>
-                            <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/my-statistics">My Statistics</Link>
+                            <Link className="nav-link fst-italic fw-semibold fs-5 statistic-link" to="/my-statistics">My Statistics</Link>
                         </>
                     )}
 
                     {isUserNotEmpty && !isOwner &&
                         (
-                            <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="/my-orders">My Orders</Link>
+                            <Link className="nav-link fst-italic fw-semibold fs-5 statistic-link" to="/my-orders">My Orders</Link>
                         )
                     }
 
                     {!isUserNotEmpty ? (
-                        <Link className="nav-link text-white fst-italic fw-semibold fs-5" to="user/login">Login</Link>
+                        <Link className="nav-link  fst-italic fw-semibold fs-5 login-link" to="user/login">Login</Link>
                     ) : (
                         <>
-                            <button className="nav-link text-white fst-italic fw-semibold fs-5" onClick={logOut}>Log Out</button>
+                            <button className="nav-link  fst-italic fw-semibold fs-5 login-link" onClick={logOut}>Log Out</button>
                         </>
                     )}
                 </div>

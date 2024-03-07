@@ -33,7 +33,7 @@ function MyStatistics() {
                             <div className="card text-bg-dark mb-3" style={{ height: '100%' }}>
                                 <div className="card-body d-flex flex-column">
                                     <h4 className="card-title"><strong>{item.weekOfYear}</strong></h4> <br />
-                                    <p className="card-text"><strong>Total Earnings:</strong> {item.totalEarnings}</p>
+                                    <p className="card-text"><strong>Total Earnings:</strong> {item.totalEarnings.toFixed(2)}</p>
                                     <ul className="list-group list-group-flush flex-grow-1">
                                         {Object.entries(item.dishesOrdered).map(([dishName, count]) => (
                                             <li className="list-group-item" key={dishName}>

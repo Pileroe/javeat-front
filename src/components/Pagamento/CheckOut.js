@@ -125,7 +125,7 @@ const CheckOut = ({ restaurant }) => {
                         />
                     </div>
                 ))}
-                <button type="submit" className="btn ">Invia Ordine</button>
+                <button type="submit" className="btn" style={{ backgroundColor: '#2EC4B6', color: '#FFFFFF' }}>Invia Ordine</button>
             </form>
         </div>
         </div>
