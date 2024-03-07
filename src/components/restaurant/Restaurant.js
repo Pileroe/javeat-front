@@ -94,7 +94,7 @@ export default function Restaurant({ restaurant, invertFliker }) {
                                         );
                                     })}
                                     <hr />
-                                    <p>Total Price: ${getTotalPrice()}</p>
+                                    <p>Total Price: ${getTotalPrice().toFixed(2)}</p>
                                     {cartItems.size > 0 && (
                                         <button style={{ backgroundColor: '#2EC4B6', color: '#FFFFFF' }} className="btn btn-block" onClick={proceedToCheckout}>Proceed to Checkout</button>
                                     )}

@@ -83,7 +83,7 @@ const Register = () => {
                   <label className="form-check-label" htmlFor="flexSwitchCheckDefault"><strong>Sei un ristoratore?</strong></label>
                   <input onClick={changeInOwner} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
                 </div>
-                <button onClick={handleRegistration} className="btn btn-primary">Register</button>   
+                <button onClick={handleRegistration} style={{backgroundColor: "#2EC4B6"}} className="btn">Register</button>   
         </form>
         </div>
         </body>
