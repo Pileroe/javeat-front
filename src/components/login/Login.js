@@ -46,11 +46,11 @@ export default function Login() {
     }
 
     return (
-        <body style={{ minHeight: '150vh', backgroundImage: "url('https://cdn.discordapp.com/attachments/1211972312690069504/1212361688813150329/Progetto_senza_titolo-6.png?ex=65f18ecf&is=65df19cf&hm=57230290f233eb9bd2f3fc210141625e60bd328bdca423ff5a35a193de0e7acc&')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+        <body style={{ minHeight: '150vh', backgroundImage: "url('/3.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh'}}>
             <br/><br/><br/><br/><br/><br/>
             <div className="container d-flex justify-content-center align-items-center  ">
                 <form>
-                    <h2>Accedi</h2>
+                    <h2><strong>Accedi</strong></h2>
                     <br/>
                     <div className="mb-">
                         <label htmlFor="exampleInputEmail1" className="form-label"><strong>Email address</strong></label>
@@ -60,8 +60,8 @@ export default function Login() {
                         <label htmlFor="exampleInputPassword1" className="form-label"><strong>Password</strong></label>
                         <input type="password" className="form-control" id="exampleInputPassword1" ref={passIn} placeholder="Password"/>
                     </div>
-                    <button type="button" onClick={handleLogin} className="btn btn-warning" style={{ backgroundColor: "#ff6600", color: "#ffffff" }}>Login</button>
-                    <Link to="/user/register" ><button type="button" className="btn btn-secondary mx-3" >Registrati</button></Link>
+                    <button type="button" onClick={handleLogin} className="btn btn-warning" style={{ backgroundColor: "#2EC4B6"}}>Login</button>
+                    <Link to="/user/register" ><button type="button" style={{backgroundColor: "#2EC4B6"}} className="btn mx-3" >Registrati</button></Link>
                 </form>
             </div>
             {showErrorPopup && (
@@ -75,7 +75,7 @@ export default function Login() {
                                 {errorMessage}
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={handleCloseErrorPopup}>Chiudi</button>
+                                <button type="button" style={{backgroundColor: "#2EC4B6"}} className="btn" onClick={handleCloseErrorPopup}>Chiudi</button>
                             </div>
                         </div>
                     </div>
