@@ -106,7 +106,7 @@ export default function AllRestaurants() {
                     <div className="col col-lg-2">
                         <div className="card px-2 py-3 pb-0 border light-subtle" style={{ position: "sticky", top: "30px", zIndex: "1000", background: '#FFFFFF' }}>
                             <div className="card-body border border-0">
-                                <h5 className="card-title">Filter</h5>
+                                <h5 className="card-title"><strong>Filter</strong></h5>
                                 <div className="mb-3">
                                     <label className="form-label">Food Types</label>
                                     <div>
