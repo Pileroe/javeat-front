@@ -33,6 +33,7 @@ const CheckOut = ({ restaurant }) => {
     {
         setExpected_arrival(event.target.value);
         setOrder({...order,expected_arrival:event.target.value});
+        setEditedOrder({...editedOrder,expected_arrival:event.target.value});
     }
 
     useEffect(() => {
@@ -72,6 +73,7 @@ const CheckOut = ({ restaurant }) => {
             dishes: mapDishesToObject(editedOrder.dishes),
         };
 
+        console.log(orderToSubmit);
     
         
     
