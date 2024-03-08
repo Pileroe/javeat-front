@@ -6,6 +6,7 @@ import { currentUser } from '../../App';
 export default function RestaurantCard({ restaurant }) {
     const [user] = useAtom(currentUser);
     const [distance, setDistance] = useState(null);
+    const isUserNotEmpty = Object.keys(user).length > 0;
 
     useEffect(() => {
         const calculateDistance = () => {
@@ -39,11 +40,13 @@ export default function RestaurantCard({ restaurant }) {
                 <div className="card-body rounded-bottom" style={{ background: '#FFFFFF' }}>
                     <h3 className="card-title" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}><strong>{restaurant.name}</strong></h3>
                     {/* non restituire che non sono aperti */}
-                    <p className="card-text"><strong>Open:</strong> {restaurant.is_open ? 'Yes' : 'No'}</p>
+                    {/* <p className="card-text"><strong>Open:</strong> {restaurant.isOpen ? 'Yes' : 'No'}</p> */}
                     <p className="card-text" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                         <strong>Food Types:</strong> {restaurant.foodTypes.join(', ')}
                     </p>
-                    <p className="card-text"><strong>Distance:</strong> {Math.round(distance)} Km</p>
+                    {isUserNotEmpty && (
+                        <p className="card-text"><strong>Distance:</strong> {Math.round(distance)} Km</p>
+                    )}
                 </div>
             </div>
         </div>
