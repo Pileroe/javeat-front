@@ -49,10 +49,10 @@ export default function Restaurant({ restaurant, invertFliker }) {
                         {/* Image set to cover the entire top area */}
                         <img src={`/static/${restaurant.imgUrl}`} className="card-img-top" alt="Restaurant" style={{ width: "100%", objectFit: "cover", maxHeight: "40vh" }} />
                         <div className="card-body">
-                            <h2 className="card-title">{restaurant.name}</h2>
-                            <p className="card-text">Phone: {restaurant.phone}</p>
-                            <p className="card-text">Opening Hour: {restaurant.openingHour}</p>
-                            <p className="card-text">Closing Hour: {restaurant.closingHour}</p>
+                            <h2 className="card-title"><strong>{restaurant.name}</strong></h2>
+                            <p className="card-text"><strong>Phone:</strong> {restaurant.phone}</p>
+                            <p className="card-text"><strong>Opening Hour:</strong> {restaurant.openingHour}</p>
+                            <p className="card-text"><strong>Closing Hour:</strong> {restaurant.closingHour}</p>
                         </div>
                     </div>
 
