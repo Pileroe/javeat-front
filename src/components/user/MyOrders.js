@@ -61,7 +61,7 @@ const MyOrders = () => {
                         < div className = "card mb-3 w-100 d-flex flex-column" >
                         <div className="card-body d-flex flex-column">
                             <h5 className="card-title"><strong>Ordine #{order.orderId}</strong></h5>
-                            <p className="card-text"><strong>Ristorente:</strong> <strong style={{color:"#2EC4B6"}}>{order.restaurantName}</strong></p>
+                            <p className="card-text"><strong>Ristorante:</strong> <strong style={{color:"#2EC4B6"}}>{order.restaurantName}</strong></p>
                             <p className="card-text"><strong>Note:</strong> {order.notes}</p>
                             <p className="card-text"><strong>Metodo di pagamento:</strong> {order.paymentMethod}</p>
                             <p className="card-text"><strong>Data di consegna prevista:</strong> {DisplayDate(order.expectedArrival)}</p>
