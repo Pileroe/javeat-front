@@ -76,9 +76,9 @@ const MyOrders = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <div className="mt-auto">
+                            {/* <div className="mt-auto">
                                 <button onClick={() => cancelOrder(order.orderId)} className="btn btn-danger me-2">Annulla Ordine</button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
         </div>
