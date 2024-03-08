@@ -39,7 +39,7 @@ export default function Homepage() {
                         <span className="visually-hidden">Next</span>
                     </button>
                 </div>
-                <div className="pt-4 pb-3">
+                <div className="pt-4 pb-5">
                 {<YourComponent  />}
                 </div>
                 
